@@ -9,119 +9,122 @@
 <style>
 :root{--bg:#080d17;--panel:#111a2b;--panel2:#0d1524;--line:#26334a;--text:#eef4ff;--muted:#9eacc4;--gold:#f2c14e;--green:#25c685;--red:#ff6577;--blue:#73a7ff}
 *{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#0b1220,#080d17 35%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
-header{position:sticky;top:0;z-index:5;background:#0b1220ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:14px 16px}
-.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#f7d66c,#b9811d);display:grid;place-items:center;color:#101522;font-weight:900;font-size:20px}
-h1{font-size:18px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:2px}
-main{max-width:980px;margin:auto;padding:14px;display:grid;gap:14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0}
-.label{font-size:12px;color:var(--muted)}.value{font-size:23px;font-weight:750;letter-spacing:-.4px;margin:5px 0}.tiny{font-size:11px;color:var(--muted)}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}
-.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}.section-title h2{font-size:15px;margin:0}.badge{font-size:10px;border:1px solid #53647e;border-radius:20px;padding:4px 8px;color:#c8d5eb}
-.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button,button{border:1px solid var(--line);background:#18243a;color:var(--text);border-radius:10px;padding:9px 11px;font-weight:650;font-size:12px}.tabs button.active{background:var(--gold);color:#171b24;border-color:var(--gold)}
-.chartbox{height:470px;border-radius:12px;overflow:hidden;background:#0b1220}.chartbox iframe{width:100%;height:100%;border:0}
-.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal h3{margin:0 0 5px;font-size:18px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:#0b1423;border:1px solid var(--line);padding:10px;border-radius:11px}.stat b{display:block;font-size:14px;margin-top:4px}
-input,select{width:100%;padding:11px;border-radius:10px;background:#09111f;border:1px solid var(--line);color:var(--text);font-size:14px;margin-top:5px}
-.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.primary{background:var(--gold);color:#151922;border-color:var(--gold)}.warning{font-size:11px;line-height:1.5;color:#c0cce0;background:#141d2d;border-radius:11px;padding:12px;border:1px solid var(--line)}
-footer{text-align:center;color:var(--muted);font-size:11px;padding:8px 18px 28px}
-@media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}
-@media(max-width:420px){.value{font-size:20px}.chartbox{height:390px}.card{padding:12px}}
+header{position:sticky;top:0;z-index:5;background:#0b1220ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px 15px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#f7d66c,#b9811d);display:grid;place-items:center;color:#101522;font-weight:900;font-size:20px}h1{font-size:18px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:2px}
+main{max-width:980px;margin:auto;padding:14px;display:grid;gap:14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0}.label{font-size:12px;color:var(--muted)}.value{font-size:22px;font-weight:750;letter-spacing:-.4px;margin:5px 0}.tiny{font-size:11px;color:var(--muted);line-height:1.5}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.section-title h2{font-size:15px;margin:0}.badge{font-size:10px;border:1px solid #53647e;border-radius:20px;padding:4px 8px;color:#c8d5eb;white-space:nowrap}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button,button{border:1px solid var(--line);background:#18243a;color:var(--text);border-radius:10px;padding:9px 11px;font-weight:650;font-size:12px}.tabs button.active{background:var(--gold);color:#171b24;border-color:var(--gold)}button.primary{background:var(--gold);color:#151922;border-color:var(--gold)}
+.chartbox{height:430px;border-radius:12px;overflow:hidden;background:#0b1220}.chartbox iframe{width:100%;height:100%;border:0}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:18px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:#0b1423;border:1px solid var(--line);padding:10px;border-radius:11px;min-width:0}.stat b{display:block;font-size:14px;margin-top:4px;overflow-wrap:anywhere}
+input,select{width:100%;padding:11px;border-radius:10px;background:#09111f;border:1px solid var(--line);color:var(--text);font-size:14px;margin-top:5px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.warning{font-size:11px;line-height:1.6;color:#c0cce0;background:#141d2d;border-radius:11px;padding:12px;border:1px solid var(--line)}footer{text-align:center;color:var(--muted);font-size:11px;padding:8px 18px 28px}
+@media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:370px}.card{padding:12px}}
 </style>
 </head>
 <body>
-<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">PERSONAL ANDROID TRADING TERMINAL · V1</div></div></div></header>
+<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">PERSONAL ANDROID TRADING TERMINAL · V2</div></div></div></header>
 <main>
 <section class="row wide">
- <div class="card"><div class="label">XAU/USD · LIVE CHART SOURCE</div><div class="value gold">Gold / US Dollar</div><div class="tiny">Prices & chart load from TradingView when online</div></div>
- <div class="card"><div class="label">USD / INR</div><div class="value">Use live FX feed</div><div class="tiny">Not hard-coded; provider integration needed for a numeric quote</div></div>
- <div class="card"><div class="label">MCX GOLD</div><div class="value">Symbol dependent</div><div class="tiny">Availability depends on chart/data permissions</div></div>
- <div class="card"><div class="label">DATA STATUS</div><div class="value" id="status">Connecting…</div><div class="tiny" id="statusSub">External chart provider</div></div>
+ <div class="card"><div class="label">XAU/USD</div><div class="value gold">Gold / US Dollar</div><div class="tiny">TradingView chart embed · quote may be broker-specific</div></div>
+ <div class="card"><div class="label">USD / INR</div><div class="value" id="fxDisplay">Not connected</div><div class="tiny">Free live FX API not connected yet</div></div>
+ <div class="card"><div class="label">MCX GOLD</div><div class="value" id="mcxDisplay">Not connected</div><div class="tiny">Needs supported MCX data feed/symbol</div></div>
+ <div class="card"><div class="label">APP DATA STATUS</div><div class="value" id="status">Chart only</div><div class="tiny" id="statusSub">No raw candle feed connected</div></div>
 </section>
 <section class="card wide">
- <div class="section-title"><h2>Gold Candlestick Chart</h2><span class="badge">TradingView embed</span></div>
+ <div class="section-title"><h2>Gold Candlestick Chart</h2><span class="badge">TradingView</span></div>
  <div class="tabs" id="timeTabs"><button data-tf="1" class="active">1m</button><button data-tf="3">3m</button><button data-tf="5">5m</button><button data-tf="15">15m</button><button data-tf="30">30m</button><button data-tf="60">1h</button><button data-tf="240">4h</button><button data-tf="D">1D</button></div>
  <div class="chartbox"><iframe id="chart" title="XAUUSD chart" src="https://www.tradingview.com/widgetembed/?frameElementId=tv_chart&symbol=OANDA%3AXAUUSD&interval=1&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=0b1220&theme=dark&style=1&timezone=Asia%2FKolkata&withdateranges=1&hideideas=1&studies=MASimple%40tv-basicstudies%1FRSI%40tv-basicstudies%1FMACD%40tv-basicstudies&locale=en"></iframe></div>
- <p class="tiny">Chart is supplied by TradingView. Its displayed quote may differ from your broker's XAUUSD feed.</p>
+ <p class="tiny">The chart is embedded from TradingView. This app cannot directly read the chart's raw candles from the iframe.</p>
 </section>
 <section class="card">
- <div class="section-title"><h2>Technical Analysis</h2><span class="badge">Live provider widget</span></div>
+ <div class="section-title"><h2>Technical Analysis</h2><span class="badge">TradingView widget</span></div>
+ <div class="tiny" style="margin-bottom:8px">Provider-generated summary. Use it as context, not a guaranteed signal.</div>
  <div id="ta-widget" style="min-height:360px"></div>
  <script src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
  {"interval":"1m","width":"100%","isTransparent":true,"height":360,"symbol":"OANDA:XAUUSD","showIntervalTabs":true,"displayMode":"single","locale":"en","colorTheme":"dark"}
  </script>
- <div class="tiny">This is an indicator summary, not a guaranteed trade signal.</div>
 </section>
 <section class="card">
- <div class="section-title"><h2>Scalping Signal Framework</h2><span class="badge">Rule-based</span></div>
- <div class="signal neutral" id="signal"><h3>⚪ WAIT / NO TRADE</h3><p>Use the live chart and confirm that trend, momentum and candle close agree. This starter app cannot read TradingView's embedded candles directly, so it does not fabricate a buy/sell signal.</p></div>
- <div class="grid2" style="margin-top:10px">
-  <div class="stat"><span class="label">Signal state</span><b id="signalState">Awaiting your inputs</b></div>
-  <div class="stat"><span class="label">Timeframe</span><b id="tfLabel">1 minute</b></div>
- </div>
+ <div class="section-title"><h2>Signal Assistant</h2><span class="badge">Manual chart readings</span></div>
+ <div class="signal neutral" id="signal"><h3>⚪ WAIT / NO TRADE</h3><p>Enter readings from your chart. The app does not invent live BUY/SELL signals.</p></div>
+ <div class="grid2" style="margin-top:10px"><div class="stat"><span class="label">Current setup</span><b id="signalState">Awaiting inputs</b></div><div class="stat"><span class="label">Timeframe</span><b id="tfLabel">1 minute</b></div></div>
  <div class="formgrid" style="margin-top:12px">
-  <label class="label">1m EMA 9 vs EMA 20<select id="ema1"><option value="up">EMA 9 above EMA 20</option><option value="down">EMA 9 below EMA 20</option><option value="flat">Mixed / flat</option></select></label>
+  <label class="label">1m EMA 9 vs EMA 20<select id="ema1"><option value="up">EMA 9 above EMA 20</option><option value="down">EMA 9 below EMA 20</option><option value="flat" selected>Mixed / flat</option></select></label>
   <label class="label">5m trend<select id="trend5"><option value="up">Bullish</option><option value="down">Bearish</option><option value="flat" selected>Sideways / mixed</option></select></label>
   <label class="label">RSI (1m, 0–100)<input id="rsi" type="number" min="0" max="100" value="50"></label>
-  <label class="label">Candle close confirmation<select id="candle"><option value="none" selected>Not confirmed</option><option value="bull">Bullish close / breakout</option><option value="bear">Bearish close / breakdown</option></select></label>
+  <label class="label">Closed candle<select id="candle"><option value="none" selected>Not confirmed</option><option value="bull">Bullish close / breakout</option><option value="bear">Bearish close / breakdown</option></select></label>
  </div>
  <div class="btnrow"><button class="primary" id="analyze">Analyze conditions</button><button id="reset">Reset</button></div>
- <p class="tiny">Signal is based only on the values you enter from the chart. It is not automatic AI or financial advice. Never enter a trade from this panel alone.</p>
+ <p class="tiny">A setup label is not an instruction to trade. Check spread, news, nearby levels, and your own risk limits.</p>
 </section>
 <section class="card">
- <div class="section-title"><h2>Risk & Reward Calculator</h2><span class="badge">Position planning</span></div>
+ <div class="section-title"><h2>Entry / SL / TP Planner</h2><span class="badge">Risk calculator</span></div>
  <div class="formgrid">
   <label class="label">Account balance<input id="balance" type="number" value="5000" min="0"></label>
   <label class="label">Risk per trade (%)<input id="risk" type="number" value="0.25" min="0" max="100" step="0.05"></label>
-  <label class="label">Entry price<input id="entry" type="number" placeholder="Enter entry price" step="any"></label>
-  <label class="label">Stop-loss price<input id="sl" type="number" placeholder="Enter stop-loss" step="any"></label>
-  <label class="label">Target price<input id="target" type="number" placeholder="Enter target" step="any"></label>
+  <label class="label">Entry price<input id="entry" type="number" placeholder="Entry" step="any"></label>
+  <label class="label">Stop-loss price<input id="sl" type="number" placeholder="Stop loss" step="any"></label>
+  <label class="label">Take-profit price<input id="target" type="number" placeholder="Target" step="any"></label>
   <label class="label">Value per $1 price move ($)<input id="valueMove" type="number" value="1" min="0.0001" step="any"></label>
  </div>
- <div class="btnrow"><button class="primary" id="calc">Calculate</button></div>
- <div class="grid2" style="margin-top:10px">
-  <div class="stat"><span class="label">Maximum planned risk</span><b id="riskMoney">—</b></div>
-  <div class="stat"><span class="label">Estimated position units*</span><b id="units">—</b></div>
-  <div class="stat"><span class="label">Risk / reward</span><b id="rr">—</b></div>
-  <div class="stat"><span class="label">Potential P/L at target*</span><b id="potential">—</b></div>
+ <div class="btnrow"><button class="primary" id="calc">Calculate plan</button></div>
+ <div class="grid2" style="margin-top:10px"><div class="stat"><span class="label">Planned risk</span><b id="riskMoney">—</b></div><div class="stat"><span class="label">Estimated units</span><b id="units">—</b></div><div class="stat"><span class="label">Risk / reward</span><b id="rr">—</b></div><div class="stat"><span class="label">Potential P/L*</span><b id="potential">—</b></div></div>
+ <p class="tiny">*Uses your entered value per $1 move. Broker contract size, lot rules, spread, fees and slippage differ. Verify contract specifications first.</p>
+</section>
+<section class="card">
+ <div class="section-title"><h2>Support & Resistance Helper</h2><span class="badge">Manual inputs</span></div>
+ <p class="tiny">Enter a recent swing high, swing low and current price from the same timeframe. These are simple reference levels, not automatically detected levels.</p>
+ <div class="formgrid">
+  <label class="label">Recent swing high<input id="sHigh" type="number" step="any" placeholder="e.g. 4350.0"></label>
+  <label class="label">Recent swing low<input id="sLow" type="number" step="any" placeholder="e.g. 4330.0"></label>
+  <label class="label">Current price<input id="sPrice" type="number" step="any" placeholder="Current chart price"></label>
+  <label class="label">Level timeframe<select id="levelTf"><option>1m</option><option>3m</option><option selected>5m</option><option>15m</option><option>1h</option><option>4h</option></select></label>
  </div>
- <p class="tiny">*Calculator uses the entered value per $1 move. Broker contract size, lot rules, spread, commission and slippage differ; verify before using real money.</p>
+ <div class="btnrow"><button class="primary" id="levelsBtn">Calculate levels</button></div>
+ <div class="grid2" style="margin-top:10px"><div class="stat"><span class="label">Resistance reference</span><b id="resLevel">—</b></div><div class="stat"><span class="label">Support reference</span><b id="supLevel">—</b></div><div class="stat"><span class="label">Distance to resistance</span><b id="resDist">—</b></div><div class="stat"><span class="label">Distance to support</span><b id="supDist">—</b></div></div>
 </section>
 <section class="card wide">
- <div class="section-title"><h2>Market Watch</h2><span class="badge">Data source notes</span></div>
- <div class="grid2">
-  <div class="stat"><span class="label">International gold</span><b>XAU/USD</b><span class="tiny">Shown in chart above</span></div>
-  <div class="stat"><span class="label">Indian futures</span><b>MCX Gold</b><span class="tiny">Needs a supported exchange symbol/feed</span></div>
-  <div class="stat"><span class="label">Currency conversion</span><b>USD/INR</b><span class="tiny">A live FX API is needed for an exact rate</span></div>
-  <div class="stat"><span class="label">Alerts</span><b>Next version</b><span class="tiny">Background alerts require hosting/provider setup</span></div>
+ <div class="section-title"><h2>Local Price Alerts</h2><span class="badge">While app is open</span></div>
+ <p class="tiny">Set a price level and direction. Alerts are checked only while this page stays open; this is not a background/server alert and it does not receive live price automatically. Enter/update the price manually.</p>
+ <div class="formgrid">
+  <label class="label">Current XAU/USD price<input id="alertPriceNow" type="number" step="any" placeholder="Update current price"></label>
+  <label class="label">Alert when price<select id="alertDirection"><option value="above">Moves to / above level</option><option value="below">Moves to / below level</option></select></label>
+  <label class="label">Alert level<input id="alertLevel" type="number" step="any" placeholder="Target level"></label>
+  <label class="label">Alert status<input id="alertStatus" value="No alert set" readonly></label>
  </div>
+ <div class="btnrow"><button class="primary" id="setAlert">Set local alert</button><button id="checkAlert">Check updated price</button><button id="clearAlert">Clear</button><button id="notifyBtn">Enable notifications</button></div>
 </section>
-<section class="warning wide"><b>Important limits:</b> This is a starter prototype, not a verified automated trading system. TradingView widgets provide chart/technical-analysis displays but do not give this app raw candle data to calculate its own AI signals. For automatic signals, live INR quotes, MCX quotes and reliable notifications, we must connect a licensed data API and test it. No signal is guaranteed accurate. Do not use this prototype alone to place live trades.</section>
+<section class="warning wide"><b>Important:</b> This V2 is still a prototype, not an automated trading engine. XAU/USD chart and technical summary are embedded from TradingView; raw candle data, automatic signals, numeric live USD/INR, live MCX prices and reliable background alerts are not connected. Those require a suitable data provider, permitted access and potentially a secure backend. Never rely on this app alone for live trades.</section>
 </main>
-<footer>Gold Scalper AI · Personal prototype · Not affiliated with TradingView · Market data may be delayed or unavailable</footer>
+<footer>Gold Scalper AI V2 · Personal prototype · Not affiliated with TradingView · Verify quotes and broker specifications</footer>
 <script>
 const chart=document.getElementById('chart');
 const tfNames={'1':'1 minute','3':'3 minutes','5':'5 minutes','15':'15 minutes','30':'30 minutes','60':'1 hour','240':'4 hours','D':'1 day'};
-document.querySelectorAll('#timeTabs button').forEach(b=>b.addEventListener('click',()=>{
- document.querySelectorAll('#timeTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');
- const tf=b.dataset.tf;document.getElementById('tfLabel').textContent=tfNames[tf]||tf;
- chart.src='https://www.tradingview.com/widgetembed/?frameElementId=tv_chart&symbol=OANDA%3AXAUUSD&interval='+encodeURIComponent(tf)+'&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=0b1220&theme=dark&style=1&timezone=Asia%2FKolkata&withdateranges=1&hideideas=1&studies=MASimple%40tv-basicstudies%1FRSI%40tv-basicstudies%1FMACD%40tv-basicstudies&locale=en';
-}));
-setTimeout(()=>{document.getElementById('status').textContent='Chart requested';document.getElementById('statusSub').textContent='Check connection and chart timestamp';},1800);
+document.querySelectorAll('#timeTabs button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#timeTabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active');const tf=b.dataset.tf;document.getElementById('tfLabel').textContent=tfNames[tf]||tf;chart.src='https://www.tradingview.com/widgetembed/?frameElementId=tv_chart&symbol=OANDA%3AXAUUSD&interval='+encodeURIComponent(tf)+'&hidesidetoolbar=0&symboledit=1&saveimage=0&toolbarbg=0b1220&theme=dark&style=1&timezone=Asia%2FKolkata&withdateranges=1&hideideas=1&studies=MASimple%40tv-basicstudies%1FRSI%40tv-basicstudies%1FMACD%40tv-basicstudies&locale=en';}));
 document.getElementById('analyze').addEventListener('click',()=>{
  const e=document.getElementById('ema1').value,t=document.getElementById('trend5').value,c=document.getElementById('candle').value,r=Number(document.getElementById('rsi').value);
- let state='⚪ WAIT / NO TRADE',cls='neutral',detail='Conditions are mixed or confirmation is missing. Wait for a completed candle and reassess.';
- if(e==='up'&&t==='up'&&c==='bull'&&r>=50&&r<70){state='🟢 BULLISH SETUP';cls='';detail='Entered conditions align bullishly. Check nearby resistance, spread, event risk and your stop before considering any trade.';}
- else if(e==='down'&&t==='down'&&c==='bear'&&r<=50&&r>30){state='🔴 BEARISH SETUP';cls='neutral';detail='Entered conditions align bearishly. Check nearby support, spread, event risk and your stop before considering any trade.';}
- else if(r<0||r>100||!Number.isFinite(r)){detail='RSI must be a number between 0 and 100.';}
- const box=document.getElementById('signal');box.className='signal '+cls;box.innerHTML='<h3>'+state+'</h3><p>'+detail+'</p>';
- document.getElementById('signalState').textContent=state.replace(/^[^A-Z🟢🔴⚪]+/,'');
+ let state='⚪ WAIT / NO TRADE',cls='neutral',detail='Mixed conditions or missing confirmation. Wait for a completed candle and reassess.';
+ if(!Number.isFinite(r)||r<0||r>100){detail='RSI must be between 0 and 100.';}
+ else if(e==='up'&&t==='up'&&c==='bull'&&r>=50&&r<70){state='🟢 BULLISH SETUP';cls='';detail='Your entered readings align bullishly. Check resistance, spread, event risk and stop placement.';}
+ else if(e==='down'&&t==='down'&&c==='bear'&&r<=50&&r>30){state='🔴 BEARISH SETUP';cls='bear';detail='Your entered readings align bearishly. Check support, spread, event risk and stop placement.';}
+ const box=document.getElementById('signal');box.className='signal '+cls;box.innerHTML='<h3>'+state+'</h3><p>'+detail+'</p>';document.getElementById('signalState').textContent=state;
 });
-document.getElementById('reset').addEventListener('click',()=>{document.getElementById('ema1').value='up';document.getElementById('trend5').value='flat';document.getElementById('rsi').value=50;document.getElementById('candle').value='none';document.getElementById('signal').className='signal neutral';document.getElementById('signal').innerHTML='<h3>⚪ WAIT / NO TRADE</h3><p>Use the live chart and confirm that trend, momentum and candle close agree. This starter app cannot read TradingView\\'s embedded candles directly, so it does not fabricate a buy/sell signal.</p>';document.getElementById('signalState').textContent='Awaiting your inputs';});
+document.getElementById('reset').addEventListener('click',()=>{document.getElementById('ema1').value='flat';document.getElementById('trend5').value='flat';document.getElementById('rsi').value=50;document.getElementById('candle').value='none';document.getElementById('signal').className='signal neutral';document.getElementById('signal').innerHTML='<h3>⚪ WAIT / NO TRADE</h3><p>Enter readings from your chart. The app does not invent live BUY/SELL signals.</p>';document.getElementById('signalState').textContent='Awaiting inputs';});
 document.getElementById('calc').addEventListener('click',()=>{
- const bal=+document.getElementById('balance').value,risk=+document.getElementById('risk').value/100,e=+document.getElementById('entry').value,s=+document.getElementById('sl').value,t=+document.getElementById('target').value,v=+document.getElementById('valueMove').value;
- const money=bal*risk;document.getElementById('riskMoney').textContent=Number.isFinite(money)&&money>0?money.toFixed(2):'—';
- if(![e,s,t,v].every(Number.isFinite)||!v||e===s){['units','rr','potential'].forEach(id=>document.getElementById(id).textContent='Enter valid prices');return;}
- const stop=Math.abs(e-s),gain=Math.abs(t-e),units=money/(stop*v),potential=gain*v*units;
- document.getElementById('units').textContent=units.toFixed(4);document.getElementById('rr').textContent=(gain/stop).toFixed(2)+' : 1';document.getElementById('potential').textContent=potential.toFixed(2);
+ const bal=Number(document.getElementById('balance').value),risk=Number(document.getElementById('risk').value)/100,e=Number(document.getElementById('entry').value),s=Number(document.getElementById('sl').value),t=Number(document.getElementById('target').value),v=Number(document.getElementById('valueMove').value);
+ if(![bal,risk,e,s,t,v].every(Number.isFinite)||bal<=0||risk<=0||risk>1||v<=0||e===s||e===t){alert('Check balance, risk, entry, SL, target and value per $1 move.');return;}
+ const stop=Math.abs(e-s),gain=Math.abs(t-e),money=bal*risk,units=money/(stop*v),potential=gain*v*units;
+ document.getElementById('riskMoney').textContent=money.toFixed(2);document.getElementById('units').textContent=units.toFixed(4);document.getElementById('rr').textContent=(gain/stop).toFixed(2)+' : 1';document.getElementById('potential').textContent=potential.toFixed(2);
 });
-if('serviceWorker' in navigator && location.protocol.startsWith('http')) navigator.serviceWorker.register('./sw.js').catch(()=>{});
+document.getElementById('levelsBtn').addEventListener('click',()=>{
+ const h=Number(document.getElementById('sHigh').value),l=Number(document.getElementById('sLow').value),p=Number(document.getElementById('sPrice').value);
+ if(![h,l,p].every(Number.isFinite)||h<=l||p<=0){alert('Enter valid values: swing high must be greater than swing low.');return;}
+ document.getElementById('resLevel').textContent=h.toFixed(2)+' ('+document.getElementById('levelTf').value+')';document.getElementById('supLevel').textContent=l.toFixed(2)+' ('+document.getElementById('levelTf').value+')';document.getElementById('resDist').textContent=(h-p).toFixed(2);document.getElementById('supDist').textContent=(p-l).toFixed(2);
+});
+let localAlert=null,alertFired=false;
+document.getElementById('setAlert').addEventListener('click',()=>{const level=Number(document.getElementById('alertLevel').value),now=Number(document.getElementById('alertPriceNow').value);if(!Number.isFinite(level)||!Number.isFinite(now)){alert('Enter alert level and current price first.');return;}localAlert={level,direction:document.getElementById('alertDirection').value};alertFired=false;document.getElementById('alertStatus').value='Armed: '+localAlert.direction+' '+level;checkPrice();});
+function checkPrice(){if(!localAlert)return;const now=Number(document.getElementById('alertPriceNow').value);if(!Number.isFinite(now))return;const hit=localAlert.direction==='above'?now>=localAlert.level:now<=localAlert.level;if(hit&&!alertFired){alertFired=true;document.getElementById('alertStatus').value='TRIGGERED at '+now;alert('Gold Scalper AI: price condition reached at '+now+'. Verify the actual market quote.');if('Notification'in window&&Notification.permission==='granted')new Notification('Gold Scalper AI',{body:'Price condition reached at '+now});}else if(!alertFired)document.getElementById('alertStatus').value='Armed · latest entered price '+now;}
+document.getElementById('checkAlert').addEventListener('click',checkPrice);
+document.getElementById('clearAlert').addEventListener('click',()=>{localAlert=null;alertFired=false;document.getElementById('alertStatus').value='No alert set';});
+document.getElementById('notifyBtn').addEventListener('click',async()=>{if(!('Notification'in window)){alert('Browser notifications are not supported here.');return;}const p=await Notification.requestPermission();alert('Notification permission: '+p);});
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
 </script>
 </body></html>
