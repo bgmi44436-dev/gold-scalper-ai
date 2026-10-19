@@ -1,0 +1,10 @@
+{
+  "name": "Gold Scalper AI",
+  "short_name": "Gold Scalper",
+  "description": "Personal gold trading chart and risk calculator prototype",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#080d17",
+  "theme_color": "#0b1220",
+  "orientation": "portrait"
+}
