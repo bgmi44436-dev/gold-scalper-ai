@@ -1,18 +1,19 @@
-Gold Scalper AI V2 — Android-friendly static web app
+Gold Scalper AI V3 — Android/GitHub Pages prototype
 
-Files:
-- index.html: app interface and tools
-- manifest.json: installable web app metadata
-- sw.js: minimal service worker
+What changed:
+- Removed Entry/SL/TP calculator.
+- Uses Binance public spot klines for PAXGUSDT (if endpoint accessible from user's network).
+- Timeframes: 1m, 3m, 5m, 15m.
+- Custom canvas candlestick chart with rule-based BUY/SELL markers.
+- EMA 9/20 + RSI + closed candle breakout/breakdown checks.
+- Automatic recent swing support/resistance.
+- FAST and CONFIRMED modes; confirmed mode checks 5m trend.
+- Optional browser notifications while page is open.
 
-How to publish using GitHub mobile website:
-1. Open your repository: https://github.com/bgmi4436-dev/gold-scalper-ai
-2. Open index.html, tap pencil/Edit, select all old content, paste the new index.html content from this package, and commit changes.
-3. For manifest.json and sw.js, replace their contents with the files in this package and commit.
-4. Wait a minute, then refresh https://bgmi4436-dev.github.io/gold-scalper-ai/
-
-Limitations:
-- TradingView widgets are external embeds and do not expose raw candle data to this app.
-- No automatic raw market feed, automatic BUY/SELL engine, live MCX/USD-INR quote integration, or background alert server is connected.
-- Local price alerts work only after you manually enter/update the current price while the page is open.
-- This is a prototype, not financial advice. Validate prices, contract sizing, and all calculations before trading.
+Important:
+- PAXG/USDT is tokenized gold, not broker XAU/USD. It can diverge in price/candles/liquidity.
+- Rules are illustrative and unbacktested; no guaranteed accuracy and no trade execution.
+- Public API/network access may be unavailable or restricted in some regions.
+- Keep app open for refresh/notifications. Background notifications are not guaranteed.
+- This frontend contains no API secret.
+- After uploading all 3 files to the GitHub Pages repo, hard-refresh the site. If data shows Offline, test the endpoint or network availability.
