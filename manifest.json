@@ -1,10 +1,1 @@
-{
-  "name": "Gold Scalper AI",
-  "short_name": "Gold Scalper",
-  "description": "Personal gold chart and trade planning prototype",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#080d17",
-  "theme_color": "#0b1220",
-  "icons": []
-}
+{"name":"Gold Scalper AI V3","short_name":"Gold Scalper","start_url":"./","display":"standalone","background_color":"#080d17","theme_color":"#0b1220","description":"PAXG/USDT candle-based gold indicator prototype"}
