@@ -1,1 +1,9 @@
-{"name":"Gold Scalper AI V3","short_name":"Gold Scalper","start_url":"./","display":"standalone","background_color":"#080d17","theme_color":"#0b1220","description":"PAXG/USDT candle-based gold indicator prototype"}
+{
+  "name": "Gold Scalper AI V3.1",
+  "short_name": "Gold Scalper",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080d17",
+  "theme_color": "#0b1220",
+  "description": "Dual-market gold indicator for Delta XAUTUSD and Binance PAXG/USDT"
+}
