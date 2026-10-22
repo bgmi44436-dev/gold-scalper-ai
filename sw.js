@@ -1,7 +1,1 @@
-const CACHE_NAME = "gold-scalper-ai-v2";
-self.addEventListener("install", event => { self.skipWaiting(); });
-self.addEventListener("activate", event => { event.waitUntil(self.clients.claim()); });
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(fetch(event.request).catch(() => caches.match(event.request)));
-});
+const CACHE='gold-scalper-v3-shell';const ASSETS=['./','./index.html','./manifest.json'];self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS))));self.addEventListener('fetch',e=>{if(new URL(e.request.url).origin===location.origin)e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));});
