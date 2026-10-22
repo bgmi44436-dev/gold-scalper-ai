@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V3</title>
+<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V3.1</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#080d17;--panel:#111a2b;--line:#26334a;--text:#eef4ff;--muted:#9eacc4;--gold:#f2c14e;--green:#25c685;--red:#ff6577;--blue:#73a7ff}
@@ -16,19 +16,19 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 @media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:340px}.card{padding:12px}}
 </style></head>
 <body>
-<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">PAXG/USDT LIVE CANDLES · V3.1 AUTO HELPER</div></div></div></header>
+<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DUAL MARKET INDICATOR · V3.1</div></div></div></header>
 <main>
 <section class="row wide">
- <div class="card"><div class="label">DATA PAIR</div><div class="value gold">PAXG/USDT</div><div class="tiny">Tokenized gold on Binance spot market</div></div>
+ <div class="card"><div class="label">MARKET</div><select id="market"><option value="xaut">Delta India · XAUTUSD Perpetual</option><option value="paxg">Binance · PAXG/USDT Spot</option></select><div class="tiny" id="marketDesc">Delta Exchange India feed</div></div>
  <div class="card"><div class="label">LAST PRICE</div><div class="value" id="price">Connecting…</div><div class="tiny" id="priceTime">Waiting for market data</div></div>
  <div class="card"><div class="label">DATA STATUS</div><div class="value" id="status">Connecting</div><div class="tiny" id="statusSub">Checking public market data</div></div>
  <div class="card"><div class="label">SIGNAL MODE</div><select id="mode"><option value="fast">FAST</option><option value="confirmed" selected>CONFIRMED</option></select><div class="tiny">Educational rules, not guaranteed predictions</div></div>
 </section>
 <section class="card wide">
- <div class="section-title"><h2>PAXG/USDT Candles</h2><span class="badge" id="chartBadge">Live API · Binance</span></div>
- <div class="tabs" id="timeTabs"><button data-tf="1m" class="active">1m</button><button data-tf="3m">3m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button></div>
+ <div class="section-title"><h2 id="chartTitle">XAUTUSD Candles</h2><span class="badge" id="chartBadge">Delta India API</span></div>
+ <div class="tabs" id="timeTabs"><button data-tf="1m" class="active">1m</button><button data-tf="3m">3m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="30m">30m</button><button data-tf="1h">1H</button><button data-tf="4h">4H</button><button data-tf="1d">1D</button></div>
  <div class="chartbox"><canvas id="chart"></canvas></div>
- <p class="tiny">Candles are fetched from Binance public market-data endpoints. Markers and levels are calculated by this app from the received candles. This chart is PAXG/USDT, not your broker's exact XAU/USD feed.</p>
+ <p class="tiny">Choose a market above. Candles, support/resistance and signals use only the selected market feed. XAUTUSD is Delta India Tether Gold Token Perpetual; PAXG/USDT is Binance spot and is a separate market.</p>
 </section>
 <section class="card">
  <div class="section-title"><h2>Signal Dashboard</h2><span class="badge" id="signalTf">1m rules</span></div>
@@ -37,37 +37,48 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
   <div class="stat"><span class="label">FAST setup</span><b id="fastSignal">Waiting</b></div>
   <div class="stat"><span class="label">Confirmed setup</span><b id="confirmedSignal">Waiting</b></div>
   <div class="stat"><span class="label">Short-term trend</span><b id="trend">—</b></div>
-  <div class="stat"><span class="label">RSI (14)</span><b id="rsi">—</b></div>
+  <div class="stat"><span class="label">RSI (14)</span><b id="rsi">—</b></div><div class="stat"><span class="label">Rule alignment score</span><b id="confidence">—</b></div>
  </div>
- <p class="tiny">FAST uses 1m EMA 9/20 alignment, RSI and recent candle direction. CONFIRMED also checks 5m trend when available. WAIT means rules do not align. It is not a financial recommendation.</p>
+ <p class="tiny">FAST uses EMA 9/20, RSI and candle breakout. CONFIRMED additionally checks 5m trend. Rule alignment score is heuristic only—not a win probability or backtested confidence. WAIT means rules do not align.</p>
 </section>
 <section class="card">
- <div class="section-title"><h2>Automatic Support / Resistance</h2><span class="badge">AUTO · Updates with candles</span></div>
+ <div class="section-title"><h2>Automatic Support / Resistance</h2><span class="badge">Recent swing levels</span></div>
  <div class="grid2">
   <div class="stat"><span class="label">Resistance</span><b id="res">—</b></div>
   <div class="stat"><span class="label">Support</span><b id="sup">—</b></div>
   <div class="stat"><span class="label">Breakout / breakdown</span><b id="breakout">—</b></div>
   <div class="stat"><span class="label">Last candle</span><b id="candleState">—</b></div>
  </div>
- <p class="tiny">Helper automatically recalculates support/resistance from recent closed candles. It flags confirmed candle-close breakouts/breakdowns and can send browser alerts when enabled. False breakouts can occur.</p>
+ <p class="tiny">Levels use recent local swing highs/lows in the loaded candle window. A breakout is flagged only when a closed candle closes beyond the recent level. False breakouts can occur.</p>
 </section>
 <section class="card wide">
- <div class="section-title"><h2>Alerts</h2><span class="badge">Signals + S/R breaks</span></div>
- <p class="tiny">Enable browser notifications for BUY/SELL signal changes and confirmed support/resistance breakouts. Keep the page open; background alerts are not guaranteed.</p>
+ <div class="section-title"><h2>Alerts</h2><span class="badge">While page is open</span></div>
+ <p class="tiny">The app can show an in-page notification when a newly fetched candle changes the signal. Keep the page open; background alerts are not guaranteed on GitHub Pages.</p>
  <div class="btnrow"><button class="primary" id="notify">Enable notifications</button><button id="refresh">Refresh now</button></div>
  <div class="tiny" id="alertStatus" style="margin-top:8px">Signal alerts are off until enabled.</div>
 </section>
-<section class="warning wide"><b>Important:</b> This prototype uses PAXG/USDT exchange data, not the exact broker XAU/USD price. It may differ in spread, liquidity, candle shapes and movement. Signals are rule-based and unbacktested; do not use them as sole grounds for funded-account trades. API/network availability may vary by region. No trading orders are placed.</section>
-</main><footer>Gold Scalper AI V3.1 · Automatic signal + support/resistance helper · Market data from Binance public endpoints · Not affiliated with Binance</footer>
+<section class="warning wide"><b>Important:</b> Signals are rule-based and unbacktested. XAUTUSD feed is intended to use Delta India public candles; PAXG/USDT uses Binance public spot candles. If an API/network request fails, the app shows Offline and must not be treated as live. Confidence is not a proven win probability. No trading orders are placed.</section>
+</main><footer>Gold Scalper AI V3.1 · Personal indicator prototype · No orders placed</footer>
 <script>
 const $=id=>document.getElementById(id);
-let tf='1m', candles=[], candles5=[], previousSignal='', previousBreakout='', notifyOn=false, lastCloseTime=0, refreshTimer=null;
+let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null;
 const base='https://data-api.binance.vision/api/v3';
+const deltaBase='https://api.india.delta.exchange';
+function deltaResolution(interval){return ({'1m':'1m','3m':'3m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','4h':'4h','1d':'1d'})[interval]||'1m'}
 async function fetchKlines(interval,limit=180){
- const r=await fetch(`${base}/klines?symbol=PAXGUSDT&interval=${interval}&limit=${limit}`,{cache:'no-store'});
- if(!r.ok) throw new Error('API HTTP '+r.status);
- const d=await r.json(); if(!Array.isArray(d)||!d.length) throw new Error('No candle data returned');
- return d.map(x=>({t:+x[0],o:+x[1],h:+x[2],l:+x[3],c:+x[4],v:+x[5],closeTime:+x[6]}));
+ if($('market').value==='paxg'){
+  const bi=interval==='1h'?'1h':interval==='4h'?'4h':interval==='1d'?'1d':interval;
+  const r=await fetch(`${base}/klines?symbol=PAXGUSDT&interval=${bi}&limit=${limit}`,{cache:'no-store'});
+  if(!r.ok) throw new Error('Binance API HTTP '+r.status);
+  const d=await r.json(); if(!Array.isArray(d)||!d.length) throw new Error('No Binance candle data returned');
+  return d.map(x=>({t:+x[0],o:+x[1],h:+x[2],l:+x[3],c:+x[4],v:+x[5],closeTime:+x[6]}));
+ }
+ const end=Math.floor(Date.now()/1000), duration=({'1m':60,'3m':180,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400})[interval]||60;
+ const start=end-duration*limit;
+ const url=`${deltaBase}/v2/history/candles?resolution=${deltaResolution(interval)}&symbol=XAUTUSD&start=${start}&end=${end}`;
+ const r=await fetch(url,{cache:'no-store'}); if(!r.ok) throw new Error('Delta API HTTP '+r.status);
+ const j=await r.json(); const d=Array.isArray(j)?j:(j.result||j.candles||[]); if(!Array.isArray(d)||!d.length) throw new Error('Delta returned no XAUTUSD candles (check symbol/API availability)');
+ return d.map(x=>Array.isArray(x)?({t:+x[0]*1000,o:+x[1],h:+x[2],l:+x[3],c:+x[4],v:+x[5],closeTime:(+x[0]+duration)*1000}):({t:+(x.time??x.t)*1000,o:+(x.open??x.o),h:+(x.high??x.h),l:+(x.low??x.l),c:+(x.close??x.c),v:+(x.volume??x.v??0),closeTime:(+(x.time??x.t)+duration)*1000})).sort((a,b)=>a.t-b.t);
 }
 function ema(values,period){if(values.length<period)return null;let k=2/(period+1),e=values.slice(0,period).reduce((a,b)=>a+b,0)/period;for(let i=period;i<values.length;i++)e=values[i]*k+e*(1-k);return e}
 function rsi(values,p=14){if(values.length<=p)return null;let g=0,l=0;for(let i=values.length-p;i<values.length;i++){let d=values[i]-values[i-1];if(d>0)g+=d;else l-=d}g/=p;l/=p;if(l===0)return 100;return 100-100/(1+g/l)}
@@ -98,33 +109,25 @@ function paintChart(){
  const lv=levels(candles);if(lv.res){ctx.setLineDash([5,4]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,y(lv.res));ctx.lineTo(w-pad.r,y(lv.res));ctx.stroke();ctx.fillStyle='#f2c14e';ctx.fillText('R',pad.l+2,y(lv.res)-4);ctx.strokeStyle='#73a7ff';ctx.beginPath();ctx.moveTo(pad.l,y(lv.sup));ctx.lineTo(w-pad.r,y(lv.sup));ctx.stroke();ctx.fillStyle='#73a7ff';ctx.fillText('S',pad.l+2,y(lv.sup)-4);ctx.setLineDash([])}
  const a=analyze(candles),last=data[data.length-2];if(a.sig!=='WAIT'&&last){const i=data.length-2,xx=x(i),yy=a.sig==='BUY'?y(last.l)+12:y(last.h)-12;ctx.fillStyle=a.sig==='BUY'?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,yy+(a.sig==='BUY'?7:-7));ctx.lineTo(xx-6,yy+(a.sig==='BUY'?-5:5));ctx.lineTo(xx+6,yy+(a.sig==='BUY'?-5:5));ctx.closePath();ctx.fill();ctx.font='bold 10px system-ui';ctx.fillText(a.sig,xx+8,yy+3)}
 }
-function sendAlert(title,body){try{new Notification(title,{body})}catch(e){$('alertStatus').textContent='Notification could not be shown; keep this page open.'}}
 function render(){
  if(!candles.length)return;const a=analyze(candles),lv=levels(candles),last=candles[candles.length-2];
- $('price').textContent=fmt(candles[candles.length-1].c)+' USDT';$('priceTime').textContent='Last candle update: '+new Date(candles[candles.length-1].t).toLocaleTimeString();
- $('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent='Binance public candles · refresh ~10s';
- $('trend').textContent=a.trend||'—';$('rsi').textContent=a.rv==null?'—':a.rv.toFixed(1);$('signalTf').textContent=tf+' rules';
+ const isPaxg=$('market').value==='paxg', marketName=isPaxg?'PAXG/USDT':'XAUTUSD';
+ $('price').textContent=fmt(candles[candles.length-1].c)+(isPaxg?' USDT':' USD');$('priceTime').textContent='Last candle update: '+new Date(candles[candles.length-1].t).toLocaleTimeString();
+ $('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent=(isPaxg?'Binance spot candles':'Delta India public candles')+' · refresh ~10s';
+ $('trend').textContent=a.trend||'—';$('rsi').textContent=a.rv==null?'—':a.rv.toFixed(1);$('signalTf').textContent=tf+' rules';$('confidence').textContent=(a.sig==='WAIT'?25:(a.sig==='BUY'||a.sig==='SELL'?70:25))+' / 100';
  $('fastSignal').textContent=a.sig;$('confirmedSignal').textContent=(candles5.length>25&&a.sig!=='WAIT'&&((ema(candles5.slice(0,-1).map(x=>x.c),9)>ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='BUY')||(ema(candles5.slice(0,-1).map(x=>x.c),9)<ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='SELL')))?a.sig+' · aligned':'WAIT · confirmation missing';
  let sig=$('mode').value==='fast'?a.sig:$('confirmedSignal').textContent.startsWith('BUY')?'BUY':$('confirmedSignal').textContent.startsWith('SELL')?'SELL':'WAIT';
  $('signal').className='signal '+(sig==='BUY'?'':sig==='SELL'?'bear':'neutral');
  $('signal').innerHTML=`<h3>${sig==='BUY'?'🟢 BUY setup':sig==='SELL'?'🔴 SELL setup':'🟡 WAIT / NO TRADE'}</h3><p>${sig==='WAIT'?'Conditions are not aligned. Do not force a trade.':a.why+'. Confirm price and spread on your own broker before considering any trade.'}</p>`;
  $('res').textContent=fmt(lv.res);$('sup').textContent=fmt(lv.sup);$('breakout').textContent=lv.breakout;$('candleState').textContent=last?(last.c>=last.o?'Bullish close':'Bearish close'):'—';
- if(last&&last.closeTime>lastCloseTime){
-   const isNewClosedCandle=lastCloseTime!==0;
-   lastCloseTime=last.closeTime;
-   const breakoutKey=lv.breakout;
-   if(isNewClosedCandle&&notifyOn){
-     if(previousSignal&&sig!==previousSignal&&sig!=='WAIT') sendAlert('Gold Scalper AI: '+sig,'PAXG/USDT '+tf+' rule-based signal. Verify price on your broker.');
-     if(previousBreakout&&breakoutKey!==previousBreakout&&(breakoutKey.startsWith('BREAKOUT')||breakoutKey.startsWith('BREAKDOWN'))) sendAlert('Gold Scalper AI: '+breakoutKey,'Confirmed candle-close level break on PAXG/USDT '+tf+'. Check your broker feed; false breaks can occur.');
-   }
-   previousSignal=sig; previousBreakout=breakoutKey;
- }
+ if(last&&last.closeTime>lastCloseTime){lastCloseTime=last.closeTime;if(previousSignal&&sig!==previousSignal&&notifyOn&&sig!=='WAIT'){try{new Notification('Gold Scalper AI: '+sig,{body:($('market').value==='paxg'?'PAXG/USDT':'Delta XAUTUSD')+' '+tf+' rule-based signal. Verify feed and price before trading.'})}catch(e){}}previousSignal=sig}
  paintChart();
 }
 async function load(){
- try{$('status').textContent='Connecting';$('status').className='value';candles=await fetchKlines(tf,180);if(tf!=='5m')candles5=await fetchKlines('5m',100);else candles5=candles;render()}
- catch(e){$('status').textContent='Offline';$('status').className='value red';$('statusSub').textContent='Could not fetch data: '+e.message;$('signal').className='signal neutral';$('signal').innerHTML='<h3>🟡 WAIT</h3><p>Live candle feed unavailable. No signal generated.</p>'}
+ try{const isPaxg=$('market').value==='paxg';$('status').textContent='Connecting';$('status').className='value';$('chartTitle').textContent=(isPaxg?'PAXG/USDT':'XAUTUSD')+' Candles';$('chartBadge').textContent=isPaxg?'Live API · Binance':'Live API · Delta India';$('marketDesc').textContent=isPaxg?'Binance tokenized-gold spot feed':'Delta Exchange India · Tether Gold Token Perpetual';candles=await fetchKlines(tf,180);if(tf!=='5m')candles5=await fetchKlines('5m',100);else candles5=candles;render()}
+ catch(e){$('status').textContent='Offline';$('status').className='value red';$('statusSub').textContent='Could not fetch data: '+e.message;$('signal').className='signal neutral';$('signal').innerHTML='<h3>🟡 WAIT</h3><p>Live candle feed unavailable. No signal generated. Check connection/API response.</p>'}
 }
+$('market').addEventListener('change',()=>{candles=[];candles5=[];previousSignal='';lastCloseTime=0;load()});
 document.querySelectorAll('[data-tf]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tf]').forEach(x=>x.classList.remove('active'));b.classList.add('active');tf=b.dataset.tf;load()}));
 $('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);
 $('notify').addEventListener('click',async()=>{if(!('Notification'in window)){ $('alertStatus').textContent='Browser notifications not supported here.';return}let p=await Notification.requestPermission();notifyOn=p==='granted';$('alertStatus').textContent=notifyOn?'Notifications enabled while page is open.':'Permission not granted.'});
