@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V3.2</title>
+<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V4.0</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#080d17;--panel:#111a2b;--line:#26334a;--text:#eef4ff;--muted:#9eacc4;--gold:#f2c14e;--green:#25c685;--red:#ff6577;--blue:#73a7ff}
@@ -16,7 +16,7 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 @media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:340px}.card{padding:12px}}
 </style></head>
 <body>
-<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">PAXG/USDT + DELTA XAUTUSD · V3.2</div></div></div></header>
+<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DELTA XAUTUSD + PAXG/USDT · V4.0</div></div></div></header>
 <main>
 <section class="row wide">
  <div class="card"><div class="label">MARKET / DATA PAIR</div><select id="market"><option value="delta">Delta India · XAUTUSD Perpetual</option><option value="paxg" selected>Binance · PAXG/USDT Spot</option></select><div class="tiny" id="marketSub">Tokenized gold on Binance spot market</div></div>
@@ -27,7 +27,7 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 <section class="card wide">
  <div class="section-title"><h2 id="chartTitle">PAXG/USDT Candles</h2><span class="badge" id="chartBadge">Live API · Binance</span></div>
  <div class="tabs" id="timeTabs"><button data-tf="1m" class="active">1m</button><button data-tf="3m">3m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="30m">30m</button><button data-tf="1h">1H</button><button data-tf="4h">4H</button><button data-tf="1d">1D</button></div>
- <div class="chartbox"><canvas id="chart"></canvas></div>
+ <div class="tiny" style="display:flex;justify-content:space-between;gap:8px;margin:6px 0"><span id="liveTick">● Live tick: waiting…</span><span>Drag: move · Pinch/wheel: zoom</span></div><div class="chartbox"><canvas id="chart"></canvas></div><div class="tabs"><button id="zoomOut">− Zoom out</button><button id="zoomIn">+ Zoom in</button><button id="chartReset">Reset view</button></div>
  <p class="tiny">Candles are fetched from Binance public market-data endpoints. Markers and levels are calculated by this app from the received candles. Market source follows the selector above. XAUTUSD is Delta Tether Gold Token Perpetual; PAXG/USDT is Binance spot.</p>
 </section>
 <section class="card">
@@ -58,10 +58,10 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
  <div class="tiny" id="alertStatus" style="margin-top:8px">Signal alerts are off until enabled.</div>
 </section>
 <section class="warning wide"><b>Important:</b> Select the market you actually trade. Delta XAUTUSD Perpetual and Binance PAXG/USDT are different markets and their prices/candles can differ. Signals are rule-based and unbacktested; do not use them as sole grounds for funded-account trades. API/network availability may vary by region. No trading orders are placed.</section>
-</main><footer>Gold Scalper AI V3.2 · Indicator only · Public market data · No trading orders placed</footer>
+</main><footer>Gold Scalper AI V4.0 · Indicator only · Public market data · No trading orders placed</footer>
 <script>
 const $=id=>document.getElementById(id);
-let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null;
+let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null, tickTimer=null, livePrice=null, visibleCount=65, panOffset=0, dragStart=null, crosshair=null, activeMarket='';
 const base='https://data-api.binance.vision/api/v3';
 const deltaBase='https://api.india.delta.exchange';
 function intervalForDelta(i){return ({'1m':'1m','3m':'3m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','4h':'4h','1d':'1d'})[i]||'1m'}
@@ -79,6 +79,33 @@ async function fetchKlines(interval,limit=180){
  const r=await fetch(url,{cache:'no-store'}); if(!r.ok)throw new Error('Delta API HTTP '+r.status);
  const payload=await r.json(); const d=payload.result||payload.data||payload; if(!Array.isArray(d)||!d.length)throw new Error('Delta returned no candles for XAUTUSD');
  return d.map(x=>({t:(+(x.time??x.t))*1000,o:+(x.open??x.o),h:+(x.high??x.h),l:+(x.low??x.l),c:+(x.close??x.c),v:+(x.volume??x.v??0),closeTime:((+(x.time??x.t))+seconds)*1000})).filter(x=>[x.t,x.o,x.h,x.l,x.c].every(Number.isFinite)).sort((a,b)=>a.t-b.t).slice(-limit);
+}
+function currentSymbol(){return $('market').value==='delta'?'XAUTUSD':'PAXGUSDT'}
+function candleSeconds(i){return ({'1m':60,'3m':180,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400})[i]||60}
+async function fetchLivePrice(){
+ const market=$('market').value;
+ try{
+  let url=market==='delta'?`${deltaBase}/v2/tickers/XAUTUSD`:`${base}/ticker/price?symbol=PAXGUSDT`;
+  const r=await fetch(url,{cache:'no-store'}); if(!r.ok)throw new Error('Ticker HTTP '+r.status);
+  const j=await r.json(); let raw;
+  if(market==='delta'){
+   let z=j.result??j.data??j; if(Array.isArray(z))z=z.find(x=>(x.symbol||x.product_symbol)==='XAUTUSD')||z[0];
+   raw=z.mark_price??z.last_price??z.close??z.price;
+  } else raw=j.price;
+  const n=Number(raw);if(!Number.isFinite(n)||n<=0)throw new Error('Ticker price missing');
+  if(market!==$('market').value)return;
+  livePrice=n; updateLiveCandle(n); $('liveTick').textContent='● Live tick: '+new Date().toLocaleTimeString(); $('liveTick').style.color='#25c685';
+  if(candles.length)render();
+ }catch(e){$('liveTick').textContent='● Live tick unavailable · '+e.message;$('liveTick').style.color='#ff6577'}
+}
+function updateLiveCandle(price){
+ if(!candles.length)return;
+ const now=Date.now(), secs=candleSeconds(tf), bucket=Math.floor(now/(secs*1000))*secs*1000;
+ let last=candles[candles.length-1];
+ if(last.t!==bucket && bucket>last.t){
+  // Keep API history intact; start a fresh in-progress candle for the current timeframe.
+  last={t:bucket,o:price,h:price,l:price,c:price,v:0,closeTime:bucket+secs*1000};candles.push(last);if(candles.length>220)candles.shift();
+ }else{last.h=Math.max(last.h,price);last.l=Math.min(last.l,price);last.c=price;}
 }
 function ema(values,period){if(values.length<period)return null;let k=2/(period+1),e=values.slice(0,period).reduce((a,b)=>a+b,0)/period;for(let i=period;i<values.length;i++)e=values[i]*k+e*(1-k);return e}
 function rsi(values,p=14){if(values.length<=p)return null;let g=0,l=0;for(let i=values.length-p;i<values.length;i++){let d=values[i]-values[i-1];if(d>0)g+=d;else l-=d}g/=p;l/=p;if(l===0)return 100;return 100-100/(1+g/l)}
@@ -99,21 +126,23 @@ function levels(data){
 function fmt(n){return n==null||!Number.isFinite(n)?'—':n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
 function paintChart(){
  const c=$('chart'),box=c.parentElement,ratio=window.devicePixelRatio||1,w=box.clientWidth,h=box.clientHeight;
- c.width=Math.max(1,Math.floor(w*ratio));c.height=Math.max(1,Math.floor(h*ratio));const ctx=c.getContext('2d');ctx.scale(ratio,ratio);ctx.clearRect(0,0,w,h);
- ctx.fillStyle='#09111f';ctx.fillRect(0,0,w,h);if(candles.length<5){ctx.fillStyle='#9eacc4';ctx.fillText('Loading candles…',18,28);return}
- const data=candles.slice(-65),pad={l:10,r:62,t:18,b:24},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
- const lo=Math.min(...data.map(x=>x.l)),hi=Math.max(...data.map(x=>x.h)),range=(hi-lo)||1;
+ c.width=Math.max(1,Math.floor(w*ratio));c.height=Math.max(1,Math.floor(h*ratio));const ctx=c.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#09111f';ctx.fillRect(0,0,w,h);
+ if(candles.length<5){ctx.fillStyle='#9eacc4';ctx.fillText('Loading candles…',18,28);return}
+ const end=Math.max(1,candles.length-panOffset),begin=Math.max(0,end-visibleCount),data=candles.slice(begin,end),pad={l:10,r:70,t:18,b:24},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
+ let lo=Math.min(...data.map(x=>x.l)),hi=Math.max(...data.map(x=>x.h));if(livePrice!==null){lo=Math.min(lo,livePrice);hi=Math.max(hi,livePrice)}const range=(hi-lo)||1;
  const y=p=>pad.t+(hi-p)/range*ch,x=i=>pad.l+(i+.5)*cw/data.length,body=Math.max(2,cw/data.length*.58);
- ctx.strokeStyle='#1b2a40';ctx.lineWidth=1;for(let i=0;i<5;i++){let yy=pad.t+i*ch/4;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillStyle='#8fa1ba';ctx.font='10px system-ui';ctx.fillText(fmt(hi-i*range/4),w-pad.r+5,yy+3)}
+ ctx.strokeStyle='#1b2a40';ctx.lineWidth=1;for(let i=0;i<5;i++){let yy=pad.t+i*ch/4;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillStyle='#8fa1ba';ctx.font='10px system-ui';ctx.fillText(fmt(hi-i*range/4),w-pad.r+4,yy+3)}
  data.forEach((d,i)=>{let xx=x(i),up=d.c>=d.o;ctx.strokeStyle=up?'#25c685':'#ff6577';ctx.fillStyle=up?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,y(d.h));ctx.lineTo(xx,y(d.l));ctx.stroke();let top=Math.min(y(d.o),y(d.c)),bh=Math.max(1,Math.abs(y(d.c)-y(d.o)));ctx.fillRect(xx-body/2,top,body,bh)});
  const lv=levels(candles);if(lv.res){ctx.setLineDash([5,4]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,y(lv.res));ctx.lineTo(w-pad.r,y(lv.res));ctx.stroke();ctx.fillStyle='#f2c14e';ctx.fillText('R',pad.l+2,y(lv.res)-4);ctx.strokeStyle='#73a7ff';ctx.beginPath();ctx.moveTo(pad.l,y(lv.sup));ctx.lineTo(w-pad.r,y(lv.sup));ctx.stroke();ctx.fillStyle='#73a7ff';ctx.fillText('S',pad.l+2,y(lv.sup)-4);ctx.setLineDash([])}
+ const px=livePrice??candles[candles.length-1].c,py=y(px);ctx.setLineDash([3,3]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(w-pad.r,py);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f2c14e';ctx.fillRect(w-pad.r+1,py-9,pad.r-2,18);ctx.fillStyle='#101522';ctx.font='bold 10px system-ui';ctx.fillText(fmt(px),w-pad.r+4,py+3);
  const a=analyze(candles),last=data[data.length-2];if(a.sig!=='WAIT'&&last){const i=data.length-2,xx=x(i),yy=a.sig==='BUY'?y(last.l)+12:y(last.h)-12;ctx.fillStyle=a.sig==='BUY'?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,yy+(a.sig==='BUY'?7:-7));ctx.lineTo(xx-6,yy+(a.sig==='BUY'?-5:5));ctx.lineTo(xx+6,yy+(a.sig==='BUY'?-5:5));ctx.closePath();ctx.fill();ctx.font='bold 10px system-ui';ctx.fillText(a.sig,xx+8,yy+3)}
+ if(crosshair){ctx.strokeStyle='#9eacc4';ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(crosshair.x,pad.t);ctx.lineTo(crosshair.x,h-pad.b);ctx.moveTo(pad.l,crosshair.y);ctx.lineTo(w-pad.r,crosshair.y);ctx.stroke();ctx.setLineDash([]);let idx=Math.max(0,Math.min(data.length-1,Math.floor((crosshair.x-pad.l)/cw*data.length)));let d=data[idx];if(d){ctx.fillStyle='#18243a';ctx.fillRect(pad.l+3,pad.t+3,150,32);ctx.fillStyle='#eef4ff';ctx.fillText(new Date(d.t).toLocaleString(),pad.l+8,pad.t+15);ctx.fillText('O '+fmt(d.o)+' H '+fmt(d.h)+' L '+fmt(d.l)+' C '+fmt(d.c),pad.l+8,pad.t+27)}}
 }
 function render(){
  if(!candles.length)return;const a=analyze(candles),lv=levels(candles),last=candles[candles.length-2];
  const isDelta=$('market').value==='delta', marketName=isDelta?'XAUTUSD':'PAXG/USDT', source=isDelta?'Delta India':'Binance';
- $('price').textContent=fmt(candles[candles.length-1].c)+(isDelta?' USD':' USDT');$('priceTime').textContent='Last candle update: '+new Date(candles[candles.length-1].t).toLocaleTimeString();
- $('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent=source+' public candles · refresh ~10s';$('chartTitle').textContent=marketName+' Candles';$('chartBadge').textContent='Live API · '+source;$('marketSub').textContent=isDelta?'Delta Exchange India · Tether Gold Token Perpetual':'Tokenized gold on Binance spot market';
+ $('price').textContent=fmt(livePrice??candles[candles.length-1].c)+(isDelta?' USD':' USDT');$('priceTime').textContent='Last candle update: '+new Date(candles[candles.length-1].t).toLocaleTimeString();
+ $('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent=source+' candles + live ticker polling';$('chartTitle').textContent=marketName+' Candles';$('chartBadge').textContent='Live API · '+source;$('marketSub').textContent=isDelta?'Delta Exchange India · Tether Gold Token Perpetual':'Tokenized gold on Binance spot market';
  $('trend').textContent=a.trend||'—';$('rsi').textContent=a.rv==null?'—':a.rv.toFixed(1);$('signalTf').textContent=tf+' rules';
  $('fastSignal').textContent=a.sig;$('confirmedSignal').textContent=(candles5.length>25&&a.sig!=='WAIT'&&((ema(candles5.slice(0,-1).map(x=>x.c),9)>ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='BUY')||(ema(candles5.slice(0,-1).map(x=>x.c),9)<ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='SELL')))?a.sig+' · aligned':'WAIT · confirmation missing';
  let sig=$('mode').value==='fast'?a.sig:$('confirmedSignal').textContent.startsWith('BUY')?'BUY':$('confirmedSignal').textContent.startsWith('SELL')?'SELL':'WAIT';
@@ -124,12 +153,14 @@ function render(){
  paintChart();
 }
 async function load(){
- try{$('status').textContent='Connecting';$('status').className='value';candles=await fetchKlines(tf,180);if(tf!=='5m')candles5=await fetchKlines('5m',100);else candles5=candles;render()}
+ try{if(activeMarket!==$('market').value){activeMarket=$('market').value;livePrice=null;panOffset=0;visibleCount=65;} $('status').textContent='Connecting';$('status').className='value';candles=await fetchKlines(tf,180);if(tf!=='5m')candles5=await fetchKlines('5m',100);else candles5=candles;render()}
  catch(e){$('status').textContent='Offline';$('status').className='value red';$('statusSub').textContent=($('market').value==='delta'?'Delta XAUTUSD feed failed: ':'Binance PAXG/USDT feed failed: ')+e.message;$('signal').className='signal neutral';$('signal').innerHTML='<h3>🟡 WAIT</h3><p>Live candle feed unavailable. No signal generated.</p>'}
 }
 document.querySelectorAll('[data-tf]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tf]').forEach(x=>x.classList.remove('active'));b.classList.add('active');tf=b.dataset.tf;load()}));
-$('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);$('market').addEventListener('change',()=>{previousSignal='';lastCloseTime=0;load()});
+$('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);$('market').addEventListener('change',()=>{previousSignal='';lastCloseTime=0;livePrice=null;load();fetchLivePrice()});
+$('zoomIn').addEventListener('click',()=>{visibleCount=Math.max(12,visibleCount-10);paintChart()});$('zoomOut').addEventListener('click',()=>{visibleCount=Math.min(180,visibleCount+10);paintChart()});$('chartReset').addEventListener('click',()=>{visibleCount=65;panOffset=0;crosshair=null;paintChart()});
+const chartCanvas=$('chart');chartCanvas.addEventListener('pointerdown',e=>{dragStart={x:e.clientX,pan:panOffset};chartCanvas.setPointerCapture(e.pointerId)});chartCanvas.addEventListener('pointermove',e=>{const r=chartCanvas.getBoundingClientRect();crosshair={x:e.clientX-r.left,y:e.clientY-r.top};if(dragStart&&Math.abs(e.clientX-dragStart.x)>3){const step=Math.round((e.clientX-dragStart.x)/(r.width/visibleCount));panOffset=Math.max(0,Math.min(candles.length-visibleCount,dragStart.pan+step));}paintChart()});chartCanvas.addEventListener('pointerup',()=>{dragStart=null});chartCanvas.addEventListener('pointercancel',()=>{dragStart=null});chartCanvas.addEventListener('wheel',e=>{e.preventDefault();visibleCount=Math.max(12,Math.min(180,visibleCount+(e.deltaY>0?8:-8)));paintChart()},{passive:false});chartCanvas.addEventListener('pointerleave',()=>{if(!dragStart){crosshair=null;paintChart()}});
 $('notify').addEventListener('click',async()=>{if(!('Notification'in window)){ $('alertStatus').textContent='Browser notifications not supported here.';return}let p=await Notification.requestPermission();notifyOn=p==='granted';$('alertStatus').textContent=notifyOn?'Notifications enabled while page is open.':'Permission not granted.'});
-window.addEventListener('resize',paintChart);load();refreshTimer=setInterval(load,10000);
+window.addEventListener('resize',paintChart);load();fetchLivePrice();refreshTimer=setInterval(load,30000);tickTimer=setInterval(fetchLivePrice,2000);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script></body></html>
