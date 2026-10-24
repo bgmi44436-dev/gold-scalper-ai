@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V4.0</title>
+<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V5.0 All-in-One</title>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#080d17;--panel:#111a2b;--line:#26334a;--text:#eef4ff;--muted:#9eacc4;--gold:#f2c14e;--green:#25c685;--red:#ff6577;--blue:#73a7ff}
@@ -10,13 +10,13 @@
 header{position:sticky;top:0;z-index:5;background:#0b1220ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px 15px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#f7d66c,#b9811d);display:grid;place-items:center;color:#101522;font-weight:900;font-size:20px}h1{font-size:18px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:2px}
 main{max-width:980px;margin:auto;padding:14px;display:grid;gap:14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel),#0d1524);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0}.label{font-size:12px;color:var(--muted)}.value{font-size:22px;font-weight:750;letter-spacing:-.4px;margin:5px 0}.tiny{font-size:11px;color:var(--muted);line-height:1.55}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.section-title h2{font-size:15px;margin:0}.badge{font-size:10px;border:1px solid #53647e;border-radius:20px;padding:4px 8px;color:#c8d5eb;white-space:nowrap}
 .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button,button{border:1px solid var(--line);background:#18243a;color:var(--text);border-radius:10px;padding:9px 11px;font-weight:650;font-size:12px}.tabs button.active{background:var(--gold);color:#171b24;border-color:var(--gold)}button.primary{background:var(--gold);color:#151922;border-color:var(--gold)}
-.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative}.chartbox canvas{width:100%;height:100%;display:block}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}
+.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative;touch-action:pan-y}.chartpanel.chart-fullscreen{position:fixed!important;inset:0!important;z-index:99999!important;margin:0!important;padding:10px!important;border-radius:0!important;overflow:auto!important;background:#080d17!important;display:flex!important;flex-direction:column!important}.chartpanel.chart-fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px;flex:1}.chartpanel.chart-fullscreen .chart-help{display:none}.chartpanel.chart-fullscreen .section-title{padding-top:env(safe-area-inset-top)}.chartpanel:fullscreen{width:100%;height:100%;background:#080d17;overflow:auto;padding:10px;border:0;border-radius:0}.chartpanel:fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px}.liveprice-flash{animation:priceFlash .35s ease-out}@keyframes priceFlash{from{opacity:.45}to{opacity:1}}.chartbox canvas{width:100%;height:100%;display:block}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:#0b1423;border:1px solid var(--line);padding:10px;border-radius:11px;min-width:0}.stat b{display:block;font-size:14px;margin-top:4px;overflow-wrap:anywhere}
 select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--line);color:var(--text);font-size:13px}.warning{font-size:11px;line-height:1.6;color:#c0cce0;background:#141d2d;border-radius:11px;padding:12px;border:1px solid var(--line)}footer{text-align:center;color:var(--muted);font-size:11px;padding:8px 18px 28px}
 @media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:340px}.card{padding:12px}}
 </style></head>
 <body>
-<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DELTA XAUTUSD + PAXG/USDT · V4.0</div></div></div></header>
+<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DELTA XAUTUSD + PAXG/USDT · V5.0</div></div></div></header>
 <main>
 <section class="row wide">
  <div class="card"><div class="label">MARKET / DATA PAIR</div><select id="market"><option value="delta">Delta India · XAUTUSD Perpetual</option><option value="paxg" selected>Binance · PAXG/USDT Spot</option></select><div class="tiny" id="marketSub">Tokenized gold on Binance spot market</div></div>
@@ -24,11 +24,11 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
  <div class="card"><div class="label">DATA STATUS</div><div class="value" id="status">Connecting</div><div class="tiny" id="statusSub">Checking public market data</div></div>
  <div class="card"><div class="label">SIGNAL MODE</div><select id="mode"><option value="fast">FAST</option><option value="confirmed" selected>CONFIRMED</option></select><div class="tiny">Educational rules, not guaranteed predictions</div></div>
 </section>
-<section class="card wide">
- <div class="section-title"><h2 id="chartTitle">PAXG/USDT Candles</h2><span class="badge" id="chartBadge">Live API · Binance</span></div>
+<section class="card wide chartpanel" id="chartPanel">
+ <div class="section-title"><h2 id="chartTitle">PAXG/USDT Candles</h2><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><span class="badge" id="chartBadge">Live API · Binance</span><button id="fullscreenBtn" type="button" aria-label="Open chart fullscreen">⛶ Full screen</button></div></div>
  <div class="tabs" id="timeTabs"><button data-tf="1m" class="active">1m</button><button data-tf="3m">3m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="30m">30m</button><button data-tf="1h">1H</button><button data-tf="4h">4H</button><button data-tf="1d">1D</button></div>
- <div class="tiny" style="display:flex;justify-content:space-between;gap:8px;margin:6px 0"><span id="liveTick">● Live tick: waiting…</span><span>Drag: move · Pinch/wheel: zoom</span></div><div class="chartbox"><canvas id="chart"></canvas></div><div class="tabs"><button id="zoomOut">− Zoom out</button><button id="zoomIn">+ Zoom in</button><button id="chartReset">Reset view</button></div>
- <p class="tiny">Candles are fetched from Binance public market-data endpoints. Markers and levels are calculated by this app from the received candles. Market source follows the selector above. XAUTUSD is Delta Tether Gold Token Perpetual; PAXG/USDT is Binance spot.</p>
+ <div class="tiny" style="display:flex;justify-content:space-between;gap:8px;margin:6px 0"><span id="liveTick">● Live tick: waiting…</span><span id="candleTimer">Candle closes in --:--</span></div><div class="chartbox"><canvas id="chart"></canvas></div><div class="tabs"><button id="zoomOut">− Zoom out</button><button id="zoomIn">+ Zoom in</button><button id="chartReset">Reset view</button><button id="fullscreenBtnBottom" type="button">⛶ Full screen</button></div>
+ <p class="tiny chart-help">Candles are fetched from Binance public market-data endpoints. Markers and levels are calculated by this app from the received candles. Market source follows the selector above. XAUTUSD is Delta Tether Gold Token Perpetual; PAXG/USDT is Binance spot.</p>
 </section>
 <section class="card">
  <div class="section-title"><h2>Signal Dashboard</h2><span class="badge" id="signalTf">1m rules</span></div>
@@ -53,15 +53,15 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 </section>
 <section class="card wide">
  <div class="section-title"><h2>Alerts</h2><span class="badge">While page is open</span></div>
- <p class="tiny">The app can show an in-page notification when a newly fetched candle changes the signal. Keep the page open; background alerts are not guaranteed on GitHub Pages.</p>
+ <p class="tiny">Alerts can notify on a changed BUY/SELL signal and a confirmed support/resistance break. Keep the page open; background alerts are not guaranteed on GitHub Pages.</p>
  <div class="btnrow"><button class="primary" id="notify">Enable notifications</button><button id="refresh">Refresh now</button></div>
  <div class="tiny" id="alertStatus" style="margin-top:8px">Signal alerts are off until enabled.</div>
 </section>
 <section class="warning wide"><b>Important:</b> Select the market you actually trade. Delta XAUTUSD Perpetual and Binance PAXG/USDT are different markets and their prices/candles can differ. Signals are rule-based and unbacktested; do not use them as sole grounds for funded-account trades. API/network availability may vary by region. No trading orders are placed.</section>
-</main><footer>Gold Scalper AI V4.0 · Indicator only · Public market data · No trading orders placed</footer>
+</main><footer>Gold Scalper AI V5.0 · Indicator only · Public market data · No trading orders placed</footer>
 <script>
 const $=id=>document.getElementById(id);
-let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null, tickTimer=null, livePrice=null, visibleCount=65, panOffset=0, dragStart=null, crosshair=null, activeMarket='';
+let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null, tickTimer=null, livePrice=null, visibleCount=65, panOffset=0, dragStart=null, crosshair=null, activeMarket='', lastTickAt=0, binanceWs=null, wsRetryTimer=null, wsRetryDelay=1500, lastAlertedLevel='';
 const base='https://data-api.binance.vision/api/v3';
 const deltaBase='https://api.india.delta.exchange';
 function intervalForDelta(i){return ({'1m':'1m','3m':'3m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','4h':'4h','1d':'1d'})[i]||'1m'}
@@ -84,6 +84,8 @@ function currentSymbol(){return $('market').value==='delta'?'XAUTUSD':'PAXGUSDT'
 function candleSeconds(i){return ({'1m':60,'3m':180,'5m':300,'15m':900,'30m':1800,'1h':3600,'4h':14400,'1d':86400})[i]||60}
 async function fetchLivePrice(){
  const market=$('market').value;
+ // Binance trades stream is used for faster PAXG ticks; REST polling remains the fallback.
+ if(market==='paxg' && binanceWs && binanceWs.readyState===WebSocket.OPEN) return;
  try{
   let url=market==='delta'?`${deltaBase}/v2/tickers/XAUTUSD`:`${base}/ticker/price?symbol=PAXGUSDT`;
   const r=await fetch(url,{cache:'no-store'}); if(!r.ok)throw new Error('Ticker HTTP '+r.status);
@@ -94,10 +96,35 @@ async function fetchLivePrice(){
   } else raw=j.price;
   const n=Number(raw);if(!Number.isFinite(n)||n<=0)throw new Error('Ticker price missing');
   if(market!==$('market').value)return;
-  livePrice=n; updateLiveCandle(n); $('liveTick').textContent='● Live tick: '+new Date().toLocaleTimeString(); $('liveTick').style.color='#25c685';
-  if(candles.length)render();
- }catch(e){$('liveTick').textContent='● Live tick unavailable · '+e.message;$('liveTick').style.color='#ff6577'}
+  acceptLivePrice(n, market==='delta'?'Delta REST ticker':'Binance REST fallback');
+ }catch(e){
+  if(market===$('market').value){$('liveTick').textContent='● Tick unavailable · '+e.message;$('liveTick').style.color='#ff6577';updateConnectionStatus();}
+ }
 }
+function acceptLivePrice(n, source){
+ livePrice=n;lastTickAt=Date.now();updateLiveCandle(n);
+ $('liveTick').textContent='● '+source+' · '+new Date().toLocaleTimeString();$('liveTick').style.color='#25c685';
+ const priceEl=$('price');priceEl.classList.remove('liveprice-flash');void priceEl.offsetWidth;priceEl.classList.add('liveprice-flash');
+ if(candles.length)render();updateConnectionStatus();
+}
+function connectBinanceStream(){
+ if($('market').value!=='paxg'||!('WebSocket'in window))return;
+ try{if(binanceWs){binanceWs.onclose=null;binanceWs.close();}}catch(e){}
+ clearTimeout(wsRetryTimer);binanceWs=null;
+ try{
+  const ws=new WebSocket('wss://stream.binance.com:9443/ws/paxgusdt@trade');binanceWs=ws;
+  ws.onopen=()=>{wsRetryDelay=1500;if($('market').value==='paxg')$('liveTick').textContent='● Binance trade stream connected';};
+  ws.onmessage=ev=>{if($('market').value!=='paxg')return;try{const d=JSON.parse(ev.data),n=Number(d.p);if(Number.isFinite(n)&&n>0)acceptLivePrice(n,'Binance WebSocket');}catch(e){}};
+  ws.onerror=()=>{try{ws.close()}catch(e){}};
+  ws.onclose=()=>{if($('market').value==='paxg'){binanceWs=null;wsRetryTimer=setTimeout(connectBinanceStream,wsRetryDelay);wsRetryDelay=Math.min(wsRetryDelay*2,30000);}};
+ }catch(e){wsRetryTimer=setTimeout(connectBinanceStream,wsRetryDelay);wsRetryDelay=Math.min(wsRetryDelay*2,30000);}
+}
+function updateConnectionStatus(){
+ const stale=!lastTickAt||Date.now()-lastTickAt>12000;
+ if(stale){$('status').textContent='Stale / reconnecting';$('status').className='value red';$('statusSub').textContent='No recent tick. Treat displayed price as potentially outdated.';}
+ else{$('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent=$('market').value==='paxg'&&binanceWs&&binanceWs.readyState===WebSocket.OPEN?'Binance trade stream active':'Public market ticker active';}
+}
+
 function updateLiveCandle(price){
  if(!candles.length)return;
  const now=Date.now(), secs=candleSeconds(tf), bucket=Math.floor(now/(secs*1000))*secs*1000;
@@ -124,6 +151,22 @@ function levels(data){
  return {sup,res,breakout:b,last};
 }
 function fmt(n){return n==null||!Number.isFinite(n)?'—':n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function updateCandleTimer(){
+ const secs=candleSeconds(tf), now=Math.floor(Date.now()/1000), remain=secs-(now%secs);
+ const mm=String(Math.floor(remain/60)).padStart(2,'0'), ss=String(remain%60).padStart(2,'0');
+ const el=$('candleTimer'); if(el)el.textContent='Candle closes in '+mm+':'+ss;
+}
+function toggleFullscreen(){
+ const panel=$('chartPanel');
+ if(document.fullscreenElement===panel || panel.classList.contains('chart-fullscreen')){
+  if(document.fullscreenElement && document.exitFullscreen) document.exitFullscreen().catch(()=>{});
+  panel.classList.remove('chart-fullscreen'); $('fullscreenBtn').textContent='⛶ Full screen'; $('fullscreenBtnBottom').textContent='⛶ Full screen';
+ }else{
+  panel.classList.add('chart-fullscreen'); $('fullscreenBtn').textContent='✕ Exit full screen'; $('fullscreenBtnBottom').textContent='✕ Exit full screen';
+  if(panel.requestFullscreen)panel.requestFullscreen().catch(()=>{});
+ }
+ setTimeout(paintChart,120);
+}
 function paintChart(){
  const c=$('chart'),box=c.parentElement,ratio=window.devicePixelRatio||1,w=box.clientWidth,h=box.clientHeight;
  c.width=Math.max(1,Math.floor(w*ratio));c.height=Math.max(1,Math.floor(h*ratio));const ctx=c.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#09111f';ctx.fillRect(0,0,w,h);
@@ -134,22 +177,29 @@ function paintChart(){
  ctx.strokeStyle='#1b2a40';ctx.lineWidth=1;for(let i=0;i<5;i++){let yy=pad.t+i*ch/4;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillStyle='#8fa1ba';ctx.font='10px system-ui';ctx.fillText(fmt(hi-i*range/4),w-pad.r+4,yy+3)}
  data.forEach((d,i)=>{let xx=x(i),up=d.c>=d.o;ctx.strokeStyle=up?'#25c685':'#ff6577';ctx.fillStyle=up?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,y(d.h));ctx.lineTo(xx,y(d.l));ctx.stroke();let top=Math.min(y(d.o),y(d.c)),bh=Math.max(1,Math.abs(y(d.c)-y(d.o)));ctx.fillRect(xx-body/2,top,body,bh)});
  const lv=levels(candles);if(lv.res){ctx.setLineDash([5,4]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,y(lv.res));ctx.lineTo(w-pad.r,y(lv.res));ctx.stroke();ctx.fillStyle='#f2c14e';ctx.fillText('R',pad.l+2,y(lv.res)-4);ctx.strokeStyle='#73a7ff';ctx.beginPath();ctx.moveTo(pad.l,y(lv.sup));ctx.lineTo(w-pad.r,y(lv.sup));ctx.stroke();ctx.fillStyle='#73a7ff';ctx.fillText('S',pad.l+2,y(lv.sup)-4);ctx.setLineDash([])}
- const px=livePrice??candles[candles.length-1].c,py=y(px);ctx.setLineDash([3,3]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(w-pad.r,py);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f2c14e';ctx.fillRect(w-pad.r+1,py-9,pad.r-2,18);ctx.fillStyle='#101522';ctx.font='bold 10px system-ui';ctx.fillText(fmt(px),w-pad.r+4,py+3);
+ const px=livePrice??candles[candles.length-1].c,py=y(px);ctx.setLineDash([3,3]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(w-pad.r,py);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f2c14e';ctx.fillRect(w-pad.r+1,py-10,pad.r-2,20);ctx.fillStyle='#101522';ctx.font='bold 10px system-ui';ctx.fillText(fmt(px),w-pad.r+4,py+3);
  const a=analyze(candles),last=data[data.length-2];if(a.sig!=='WAIT'&&last){const i=data.length-2,xx=x(i),yy=a.sig==='BUY'?y(last.l)+12:y(last.h)-12;ctx.fillStyle=a.sig==='BUY'?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,yy+(a.sig==='BUY'?7:-7));ctx.lineTo(xx-6,yy+(a.sig==='BUY'?-5:5));ctx.lineTo(xx+6,yy+(a.sig==='BUY'?-5:5));ctx.closePath();ctx.fill();ctx.font='bold 10px system-ui';ctx.fillText(a.sig,xx+8,yy+3)}
  if(crosshair){ctx.strokeStyle='#9eacc4';ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(crosshair.x,pad.t);ctx.lineTo(crosshair.x,h-pad.b);ctx.moveTo(pad.l,crosshair.y);ctx.lineTo(w-pad.r,crosshair.y);ctx.stroke();ctx.setLineDash([]);let idx=Math.max(0,Math.min(data.length-1,Math.floor((crosshair.x-pad.l)/cw*data.length)));let d=data[idx];if(d){ctx.fillStyle='#18243a';ctx.fillRect(pad.l+3,pad.t+3,150,32);ctx.fillStyle='#eef4ff';ctx.fillText(new Date(d.t).toLocaleString(),pad.l+8,pad.t+15);ctx.fillText('O '+fmt(d.o)+' H '+fmt(d.h)+' L '+fmt(d.l)+' C '+fmt(d.c),pad.l+8,pad.t+27)}}
 }
+function sendAlert(title,body){try{if('Notification'in window&&Notification.permission==='granted')new Notification(title,{body});}catch(e){} $('alertStatus').textContent='Latest alert: '+title+' · '+new Date().toLocaleTimeString();}
 function render(){
  if(!candles.length)return;const a=analyze(candles),lv=levels(candles),last=candles[candles.length-2];
  const isDelta=$('market').value==='delta', marketName=isDelta?'XAUTUSD':'PAXG/USDT', source=isDelta?'Delta India':'Binance';
  $('price').textContent=fmt(livePrice??candles[candles.length-1].c)+(isDelta?' USD':' USDT');$('priceTime').textContent='Last candle update: '+new Date(candles[candles.length-1].t).toLocaleTimeString();
- $('status').textContent='Connected';$('status').className='value green';$('statusSub').textContent=source+' candles + live ticker polling';$('chartTitle').textContent=marketName+' Candles';$('chartBadge').textContent='Live API · '+source;$('marketSub').textContent=isDelta?'Delta Exchange India · Tether Gold Token Perpetual':'Tokenized gold on Binance spot market';
+ updateConnectionStatus();$('chartTitle').textContent=marketName+' Candles';$('chartBadge').textContent='Live API · '+source;$('marketSub').textContent=isDelta?'Delta Exchange India · Tether Gold Token Perpetual':'Tokenized gold on Binance spot market';
  $('trend').textContent=a.trend||'—';$('rsi').textContent=a.rv==null?'—':a.rv.toFixed(1);$('signalTf').textContent=tf+' rules';
  $('fastSignal').textContent=a.sig;$('confirmedSignal').textContent=(candles5.length>25&&a.sig!=='WAIT'&&((ema(candles5.slice(0,-1).map(x=>x.c),9)>ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='BUY')||(ema(candles5.slice(0,-1).map(x=>x.c),9)<ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='SELL')))?a.sig+' · aligned':'WAIT · confirmation missing';
  let sig=$('mode').value==='fast'?a.sig:$('confirmedSignal').textContent.startsWith('BUY')?'BUY':$('confirmedSignal').textContent.startsWith('SELL')?'SELL':'WAIT';
  $('signal').className='signal '+(sig==='BUY'?'':sig==='SELL'?'bear':'neutral');
  $('signal').innerHTML=`<h3>${sig==='BUY'?'🟢 BUY setup':sig==='SELL'?'🔴 SELL setup':'🟡 WAIT / NO TRADE'}</h3><p>${sig==='WAIT'?'Conditions are not aligned. Do not force a trade.':a.why+'. Confirm price and spread on your own broker before considering any trade.'}</p>`;
  $('res').textContent=fmt(lv.res);$('sup').textContent=fmt(lv.sup);$('breakout').textContent=lv.breakout;$('candleState').textContent=last?(last.c>=last.o?'Bullish close':'Bearish close'):'—';
- if(last&&last.closeTime>lastCloseTime){lastCloseTime=last.closeTime;if(previousSignal&&sig!==previousSignal&&notifyOn&&sig!=='WAIT'){try{new Notification('Gold Scalper AI: '+sig,{body:($('market').value==='delta'?'Delta XAUTUSD':'PAXG/USDT')+' '+tf+' rule-based signal. Verify broker feed/spread.'})}catch(e){}}previousSignal=sig}
+ if(last&&last.closeTime>lastCloseTime){
+  lastCloseTime=last.closeTime;
+  if(previousSignal&&sig!==previousSignal&&notifyOn&&sig!=='WAIT')sendAlert('Gold Scalper AI: '+sig,($('market').value==='delta'?'Delta XAUTUSD':'PAXG/USDT')+' '+tf+' rule-based signal. Verify broker feed/spread.');
+  if(notifyOn&&lv.breakout!=='No confirmed break'&&lv.breakout!==lastAlertedLevel){sendAlert('Gold Scalper AI: '+lv.breakout,($('market').value==='delta'?'Delta XAUTUSD':'PAXG/USDT')+' closed-candle level alert. Verify on broker chart.');lastAlertedLevel=lv.breakout;}
+  if(lv.breakout==='No confirmed break')lastAlertedLevel='';
+  previousSignal=sig;
+ }
  paintChart();
 }
 async function load(){
@@ -157,10 +207,10 @@ async function load(){
  catch(e){$('status').textContent='Offline';$('status').className='value red';$('statusSub').textContent=($('market').value==='delta'?'Delta XAUTUSD feed failed: ':'Binance PAXG/USDT feed failed: ')+e.message;$('signal').className='signal neutral';$('signal').innerHTML='<h3>🟡 WAIT</h3><p>Live candle feed unavailable. No signal generated.</p>'}
 }
 document.querySelectorAll('[data-tf]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tf]').forEach(x=>x.classList.remove('active'));b.classList.add('active');tf=b.dataset.tf;load()}));
-$('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);$('market').addEventListener('change',()=>{previousSignal='';lastCloseTime=0;livePrice=null;load();fetchLivePrice()});
-$('zoomIn').addEventListener('click',()=>{visibleCount=Math.max(12,visibleCount-10);paintChart()});$('zoomOut').addEventListener('click',()=>{visibleCount=Math.min(180,visibleCount+10);paintChart()});$('chartReset').addEventListener('click',()=>{visibleCount=65;panOffset=0;crosshair=null;paintChart()});
+$('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);$('market').addEventListener('change',()=>{previousSignal='';lastCloseTime=0;lastAlertedLevel='';lastTickAt=0;livePrice=null;if($('market').value==='paxg')connectBinanceStream();else{try{if(binanceWs)binanceWs.close()}catch(e){}binanceWs=null;}load();fetchLivePrice();updateConnectionStatus()});
+$('fullscreenBtn').addEventListener('click',toggleFullscreen);$('fullscreenBtnBottom').addEventListener('click',toggleFullscreen);document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){$('chartPanel').classList.remove('chart-fullscreen');$('fullscreenBtn').textContent='⛶ Full screen';$('fullscreenBtnBottom').textContent='⛶ Full screen'}setTimeout(paintChart,150)});$('zoomIn').addEventListener('click',()=>{visibleCount=Math.max(12,visibleCount-10);paintChart()});$('zoomOut').addEventListener('click',()=>{visibleCount=Math.min(180,visibleCount+10);paintChart()});$('chartReset').addEventListener('click',()=>{visibleCount=65;panOffset=0;crosshair=null;paintChart()});
 const chartCanvas=$('chart');chartCanvas.addEventListener('pointerdown',e=>{dragStart={x:e.clientX,pan:panOffset};chartCanvas.setPointerCapture(e.pointerId)});chartCanvas.addEventListener('pointermove',e=>{const r=chartCanvas.getBoundingClientRect();crosshair={x:e.clientX-r.left,y:e.clientY-r.top};if(dragStart&&Math.abs(e.clientX-dragStart.x)>3){const step=Math.round((e.clientX-dragStart.x)/(r.width/visibleCount));panOffset=Math.max(0,Math.min(candles.length-visibleCount,dragStart.pan+step));}paintChart()});chartCanvas.addEventListener('pointerup',()=>{dragStart=null});chartCanvas.addEventListener('pointercancel',()=>{dragStart=null});chartCanvas.addEventListener('wheel',e=>{e.preventDefault();visibleCount=Math.max(12,Math.min(180,visibleCount+(e.deltaY>0?8:-8)));paintChart()},{passive:false});chartCanvas.addEventListener('pointerleave',()=>{if(!dragStart){crosshair=null;paintChart()}});
 $('notify').addEventListener('click',async()=>{if(!('Notification'in window)){ $('alertStatus').textContent='Browser notifications not supported here.';return}let p=await Notification.requestPermission();notifyOn=p==='granted';$('alertStatus').textContent=notifyOn?'Notifications enabled while page is open.':'Permission not granted.'});
-window.addEventListener('resize',paintChart);load();fetchLivePrice();refreshTimer=setInterval(load,30000);tickTimer=setInterval(fetchLivePrice,2000);
+window.addEventListener('resize',paintChart);load();fetchLivePrice();if($('market').value==='paxg')connectBinanceStream();updateCandleTimer();setInterval(updateCandleTimer,250);refreshTimer=setInterval(load,30000);tickTimer=setInterval(fetchLivePrice,2000);setInterval(updateConnectionStatus,3000);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script></body></html>
