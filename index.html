@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V5.0 All-in-One</title>
+<meta name="theme-color" content="#0b1220"><title>Gold Scalper AI V6.0 Pro Chart</title>
+<script src="https://unpkg.com/lightweight-charts@4.2.2/dist/lightweight-charts.standalone.production.js"></script>
 <link rel="manifest" href="manifest.json">
 <style>
 :root{--bg:#080d17;--panel:#111a2b;--line:#26334a;--text:#eef4ff;--muted:#9eacc4;--gold:#f2c14e;--green:#25c685;--red:#ff6577;--blue:#73a7ff}
@@ -10,13 +11,13 @@
 header{position:sticky;top:0;z-index:5;background:#0b1220ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px 15px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#f7d66c,#b9811d);display:grid;place-items:center;color:#101522;font-weight:900;font-size:20px}h1{font-size:18px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:2px}
 main{max-width:980px;margin:auto;padding:14px;display:grid;gap:14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel),#0d1524);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0}.label{font-size:12px;color:var(--muted)}.value{font-size:22px;font-weight:750;letter-spacing:-.4px;margin:5px 0}.tiny{font-size:11px;color:var(--muted);line-height:1.55}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.section-title h2{font-size:15px;margin:0}.badge{font-size:10px;border:1px solid #53647e;border-radius:20px;padding:4px 8px;color:#c8d5eb;white-space:nowrap}
 .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button,button{border:1px solid var(--line);background:#18243a;color:var(--text);border-radius:10px;padding:9px 11px;font-weight:650;font-size:12px}.tabs button.active{background:var(--gold);color:#171b24;border-color:var(--gold)}button.primary{background:var(--gold);color:#151922;border-color:var(--gold)}
-.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative;touch-action:pan-y}.chartpanel.chart-fullscreen{position:fixed!important;inset:0!important;z-index:99999!important;margin:0!important;padding:10px!important;border-radius:0!important;overflow:auto!important;background:#080d17!important;display:flex!important;flex-direction:column!important}.chartpanel.chart-fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px;flex:1}.chartpanel.chart-fullscreen .chart-help{display:none}.chartpanel.chart-fullscreen .section-title{padding-top:env(safe-area-inset-top)}.chartpanel:fullscreen{width:100%;height:100%;background:#080d17;overflow:auto;padding:10px;border:0;border-radius:0}.chartpanel:fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px}.liveprice-flash{animation:priceFlash .35s ease-out}@keyframes priceFlash{from{opacity:.45}to{opacity:1}}.chartbox canvas{width:100%;height:100%;display:block}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}.signal-status{margin-top:9px;padding:8px 10px;border-radius:8px;background:#202b3d;font-size:12px;font-weight:700}.signal-status.bad{background:#3a1d27;color:#ff9aa8}.signal-status.good{background:#12372e;color:#7be0b9}.signal-status.warn{background:#3a3018;color:#f5d36d}
+.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative;touch-action:pan-y}.chartpanel.chart-fullscreen{position:fixed!important;inset:0!important;z-index:99999!important;margin:0!important;padding:10px!important;border-radius:0!important;overflow:auto!important;background:#080d17!important;display:flex!important;flex-direction:column!important}.chartpanel.chart-fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px;flex:1}.chartpanel.chart-fullscreen .chart-help{display:none}.chartpanel.chart-fullscreen .section-title{padding-top:env(safe-area-inset-top)}.chartpanel:fullscreen{width:100%;height:100%;background:#080d17;overflow:auto;padding:10px;border:0;border-radius:0}.chartpanel:fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px}.liveprice-flash{animation:priceFlash .35s ease-out}@keyframes priceFlash{from{opacity:.45}to{opacity:1}}#chart{width:100%;height:100%;min-width:0;touch-action:pan-y}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}.signal-status{margin-top:9px;padding:8px 10px;border-radius:8px;background:#202b3d;font-size:12px;font-weight:700}.signal-status.bad{background:#3a1d27;color:#ff9aa8}.signal-status.good{background:#12372e;color:#7be0b9}.signal-status.warn{background:#3a3018;color:#f5d36d}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:#0b1423;border:1px solid var(--line);padding:10px;border-radius:11px;min-width:0}.stat b{display:block;font-size:14px;margin-top:4px;overflow-wrap:anywhere}
 select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--line);color:var(--text);font-size:13px}.warning{font-size:11px;line-height:1.6;color:#c0cce0;background:#141d2d;border-radius:11px;padding:12px;border:1px solid var(--line)}footer{text-align:center;color:var(--muted);font-size:11px;padding:8px 18px 28px}
 @media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:340px}.card{padding:12px}}
 </style></head>
 <body>
-<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DELTA XAUTUSD + PAXG/USDT · V5.0</div></div></div></header>
+<header><div class="brand"><div class="logo">Au</div><div><h1>Gold Scalper AI</h1><div class="sub">DELTA XAUTUSD + PAXG/USDT · V6.0 PRO CHART</div></div></div></header>
 <main>
 <section class="row wide">
  <div class="card"><div class="label">MARKET / DATA PAIR</div><select id="market"><option value="delta">Delta India · XAUTUSD Perpetual</option><option value="paxg" selected>Binance · PAXG/USDT Spot</option></select><div class="tiny" id="marketSub">Tokenized gold on Binance spot market</div></div>
@@ -27,7 +28,7 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 <section class="card wide chartpanel" id="chartPanel">
  <div class="section-title"><h2 id="chartTitle">PAXG/USDT Candles</h2><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap"><span class="badge" id="chartBadge">Live API · Binance</span><button id="fullscreenBtn" type="button" aria-label="Open chart fullscreen">⛶ Full screen</button></div></div>
  <div class="tabs" id="timeTabs"><button data-tf="1m" class="active">1m</button><button data-tf="3m">3m</button><button data-tf="5m">5m</button><button data-tf="15m">15m</button><button data-tf="30m">30m</button><button data-tf="1h">1H</button><button data-tf="4h">4H</button><button data-tf="1d">1D</button></div>
- <div class="tiny" style="display:flex;justify-content:space-between;gap:8px;margin:6px 0"><span id="liveTick">● Live tick: waiting…</span><span id="candleTimer">Candle closes in --:--</span></div><div class="chartbox"><canvas id="chart"></canvas></div><div class="tabs"><button id="zoomOut">− Zoom out</button><button id="zoomIn">+ Zoom in</button><button id="chartReset">Reset view</button><button id="fullscreenBtnBottom" type="button">⛶ Full screen</button></div>
+ <div class="tiny" style="display:flex;justify-content:space-between;gap:8px;margin:6px 0"><span id="liveTick">● Live tick: waiting…</span><span id="candleTimer">Candle closes in --:--</span></div><div class="chartbox"><div id="chart" aria-label="Interactive professional candlestick chart"></div></div><div class="tabs"><button id="zoomOut">− Zoom out</button><button id="zoomIn">+ Zoom in</button><button id="chartReset">Reset view</button><button id="fullscreenBtnBottom" type="button">⛶ Full screen</button></div>
  <p class="tiny chart-help">Candles are fetched from Binance public market-data endpoints. Markers and levels are calculated by this app from the received candles. Market source follows the selector above. XAUTUSD is Delta Tether Gold Token Perpetual; PAXG/USDT is Binance spot.</p>
 </section>
 <section class="card">
@@ -58,11 +59,12 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
  <div class="tiny" id="alertStatus" style="margin-top:8px">Signal alerts are off until enabled.</div>
 </section>
 <section class="warning wide"><b>Important:</b> Select the market you actually trade. Delta XAUTUSD Perpetual and Binance PAXG/USDT are different markets and their prices/candles can differ. Signals are rule-based and unbacktested; do not use them as sole grounds for funded-account trades. API/network availability may vary by region. No trading orders are placed.</section>
-</main><footer>Gold Scalper AI V5.0 · Indicator only · Public market data · No trading orders placed</footer>
+</main><footer>Gold Scalper AI V6.0 · Pro chart · Indicator only · Public market data · No trading orders placed</footer>
 <script>
 const $=id=>document.getElementById(id);
 let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null, tickTimer=null, livePrice=null, visibleCount=65, panOffset=0, dragStart=null, crosshair=null, activeMarket='', lastTickAt=0, binanceWs=null, wsRetryTimer=null, wsRetryDelay=1500, lastAlertedLevel='';
 let activeSignal=null, signalHistory=[]; const SIGNAL_HOLD_MS=10*60*1000;
+let proChart=null,candleSeries=null,volumeSeries=null,signalMarkers=[],supportLine=null,resistanceLine=null,livePriceLine=null;
 const base='https://data-api.binance.vision/api/v3';
 const deltaBase='https://api.india.delta.exchange';
 function intervalForDelta(i){return ({'1m':'1m','3m':'3m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','4h':'4h','1d':'1d'})[i]||'1m'}
@@ -168,20 +170,36 @@ function toggleFullscreen(){
  }
  setTimeout(paintChart,120);
 }
-function paintChart(){
- const c=$('chart'),box=c.parentElement,ratio=window.devicePixelRatio||1,w=box.clientWidth,h=box.clientHeight;
- c.width=Math.max(1,Math.floor(w*ratio));c.height=Math.max(1,Math.floor(h*ratio));const ctx=c.getContext('2d');ctx.setTransform(ratio,0,0,ratio,0,0);ctx.clearRect(0,0,w,h);ctx.fillStyle='#09111f';ctx.fillRect(0,0,w,h);
- if(candles.length<5){ctx.fillStyle='#9eacc4';ctx.fillText('Loading candles…',18,28);return}
- const end=Math.max(1,candles.length-panOffset),begin=Math.max(0,end-visibleCount),data=candles.slice(begin,end),pad={l:10,r:70,t:18,b:24},cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;
- let lo=Math.min(...data.map(x=>x.l)),hi=Math.max(...data.map(x=>x.h));if(livePrice!==null){lo=Math.min(lo,livePrice);hi=Math.max(hi,livePrice)}const range=(hi-lo)||1;
- const y=p=>pad.t+(hi-p)/range*ch,x=i=>pad.l+(i+.5)*cw/data.length,body=Math.max(2,cw/data.length*.58);
- ctx.strokeStyle='#1b2a40';ctx.lineWidth=1;for(let i=0;i<5;i++){let yy=pad.t+i*ch/4;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillStyle='#8fa1ba';ctx.font='10px system-ui';ctx.fillText(fmt(hi-i*range/4),w-pad.r+4,yy+3)}
- data.forEach((d,i)=>{let xx=x(i),up=d.c>=d.o;ctx.strokeStyle=up?'#25c685':'#ff6577';ctx.fillStyle=up?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,y(d.h));ctx.lineTo(xx,y(d.l));ctx.stroke();let top=Math.min(y(d.o),y(d.c)),bh=Math.max(1,Math.abs(y(d.c)-y(d.o)));ctx.fillRect(xx-body/2,top,body,bh)});
- const lv=levels(candles);if(lv.res){ctx.setLineDash([5,4]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,y(lv.res));ctx.lineTo(w-pad.r,y(lv.res));ctx.stroke();ctx.fillStyle='#f2c14e';ctx.fillText('R',pad.l+2,y(lv.res)-4);ctx.strokeStyle='#73a7ff';ctx.beginPath();ctx.moveTo(pad.l,y(lv.sup));ctx.lineTo(w-pad.r,y(lv.sup));ctx.stroke();ctx.fillStyle='#73a7ff';ctx.fillText('S',pad.l+2,y(lv.sup)-4);ctx.setLineDash([])}
- const px=livePrice??candles[candles.length-1].c,py=y(px);ctx.setLineDash([3,3]);ctx.strokeStyle='#f2c14e';ctx.beginPath();ctx.moveTo(pad.l,py);ctx.lineTo(w-pad.r,py);ctx.stroke();ctx.setLineDash([]);ctx.fillStyle='#f2c14e';ctx.fillRect(w-pad.r+1,py-10,pad.r-2,20);ctx.fillStyle='#101522';ctx.font='bold 10px system-ui';ctx.fillText(fmt(px),w-pad.r+4,py+3);
- const a=analyze(candles),last=data[data.length-2];if(a.sig!=='WAIT'&&last){const i=data.length-2,xx=x(i),yy=a.sig==='BUY'?y(last.l)+12:y(last.h)-12;ctx.fillStyle=a.sig==='BUY'?'#25c685':'#ff6577';ctx.beginPath();ctx.moveTo(xx,yy+(a.sig==='BUY'?7:-7));ctx.lineTo(xx-6,yy+(a.sig==='BUY'?-5:5));ctx.lineTo(xx+6,yy+(a.sig==='BUY'?-5:5));ctx.closePath();ctx.fill();ctx.font='bold 10px system-ui';ctx.fillText(a.sig,xx+8,yy+3)}
- if(crosshair){ctx.strokeStyle='#9eacc4';ctx.setLineDash([2,4]);ctx.beginPath();ctx.moveTo(crosshair.x,pad.t);ctx.lineTo(crosshair.x,h-pad.b);ctx.moveTo(pad.l,crosshair.y);ctx.lineTo(w-pad.r,crosshair.y);ctx.stroke();ctx.setLineDash([]);let idx=Math.max(0,Math.min(data.length-1,Math.floor((crosshair.x-pad.l)/cw*data.length)));let d=data[idx];if(d){ctx.fillStyle='#18243a';ctx.fillRect(pad.l+3,pad.t+3,150,32);ctx.fillStyle='#eef4ff';ctx.fillText(new Date(d.t).toLocaleString(),pad.l+8,pad.t+15);ctx.fillText('O '+fmt(d.o)+' H '+fmt(d.h)+' L '+fmt(d.l)+' C '+fmt(d.c),pad.l+8,pad.t+27)}}
+function initProChart(){
+ const host=$('chart'); if(!host || typeof LightweightCharts==='undefined'){host.innerHTML='<div style="padding:16px;color:#ff9aa8">Chart engine could not load. Check internet and refresh.</div>';return false;}
+ proChart=LightweightCharts.createChart(host,{width:host.clientWidth||320,height:host.clientHeight||340,layout:{background:{type:'solid',color:'#09111f'},textColor:'#aebbd0',fontFamily:'system-ui'},grid:{vertLines:{color:'#18263a'},horzLines:{color:'#18263a'}},rightPriceScale:{borderColor:'#26334a',scaleMargins:{top:.08,bottom:.12}},timeScale:{borderColor:'#26334a',timeVisible:true,secondsVisible:false,rightOffset:5},crosshair:{mode:LightweightCharts.CrosshairMode.Normal,vertLine:{color:'#7b8ba5',style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:'#34435a'},horzLine:{color:'#7b8ba5',style:LightweightCharts.LineStyle.Dashed,labelBackgroundColor:'#34435a'}},handleScroll:{mouseWheel:true,pressedMouseMove:true,horzTouchDrag:true,vertTouchDrag:false},handleScale:{mouseWheel:true,pinch:true,axisPressedMouseMove:true}});
+ candleSeries=proChart.addCandlestickSeries({upColor:'#25c685',downColor:'#ff6577',borderUpColor:'#25c685',borderDownColor:'#ff6577',wickUpColor:'#25c685',wickDownColor:'#ff6577',priceLineVisible:false});
+ volumeSeries=proChart.addHistogramSeries({priceFormat:{type:'volume'},priceScaleId:'volume',lastValueVisible:false,priceLineVisible:false});
+ proChart.priceScale('volume').applyOptions({scaleMargins:{top:.82,bottom:0},visible:false});
+ new ResizeObserver(()=>{if(proChart)proChart.applyOptions({width:host.clientWidth,height:host.clientHeight});}).observe(host);
+ return true;
 }
+function paintChart(){
+ if(!candles.length)return;
+ if(!proChart && !initProChart())return;
+ const clean=candles.filter(x=>Number.isFinite(x.t)&&Number.isFinite(x.o)&&Number.isFinite(x.h)&&Number.isFinite(x.l)&&Number.isFinite(x.c)).map(x=>({time:Math.floor(x.t/1000),open:x.o,high:x.h,low:x.l,close:x.c}));
+ const dedup=[];for(const d of clean){if(dedup.length&&dedup[dedup.length-1].time===d.time)dedup[dedup.length-1]=d;else dedup.push(d)}
+ if(!dedup.length)return;
+ candleSeries.setData(dedup);
+ const vol=candles.filter(x=>Number.isFinite(x.t)&&Number.isFinite(x.v)).map(x=>({time:Math.floor(x.t/1000),value:Math.max(0,x.v||0),color:x.c>=x.o?'#25c68555':'#ff657755'}));
+ if(volumeSeries)volumeSeries.setData(vol);
+ const lv=levels(candles);
+ try{if(supportLine)candleSeries.removePriceLine(supportLine);if(resistanceLine)candleSeries.removePriceLine(resistanceLine);if(livePriceLine)candleSeries.removePriceLine(livePriceLine)}catch(e){}
+ supportLine=lv.sup?candleSeries.createPriceLine({price:lv.sup,color:'#73a7ff',lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,axisLabelVisible:true,title:'SUPPORT'}):null;
+ resistanceLine=lv.res?candleSeries.createPriceLine({price:lv.res,color:'#f2c14e',lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dashed,axisLabelVisible:true,title:'RESISTANCE'}):null;
+ const px=livePrice??candles[candles.length-1].c;
+ livePriceLine=Number.isFinite(px)?candleSeries.createPriceLine({price:px,color:'#f2c14e',lineWidth:1,lineStyle:LightweightCharts.LineStyle.Dotted,axisLabelVisible:true,title:'LIVE'}):null;
+ const a=analyze(candles),last=a.last||candles[candles.length-2];
+ signalMarkers=[];if(a.sig!=='WAIT'&&last){signalMarkers.push({time:Math.floor(last.t/1000),position:a.sig==='BUY'?'belowBar':'aboveBar',color:a.sig==='BUY'?'#25c685':'#ff6577',shape:a.sig==='BUY'?'arrowUp':'arrowDown',text:a.sig})}
+ candleSeries.setMarkers(signalMarkers);
+ if(!window.__v6ChartLoaded){proChart.timeScale().fitContent();window.__v6ChartLoaded=true;}
+}
+
 function sendAlert(title,body){try{if('Notification'in window&&Notification.permission==='granted')new Notification(title,{body});}catch(e){} $('alertStatus').textContent='Latest alert: '+title+' · '+new Date().toLocaleTimeString();}
 function render(){
  if(!candles.length)return;const a=analyze(candles),lv=levels(candles),last=candles[candles.length-2];
@@ -229,9 +247,8 @@ async function load(){
 }
 document.querySelectorAll('[data-tf]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-tf]').forEach(x=>x.classList.remove('active'));b.classList.add('active');tf=b.dataset.tf;load()}));
 $('mode').addEventListener('change',render);$('refresh').addEventListener('click',load);$('market').addEventListener('change',()=>{previousSignal='';lastCloseTime=0;lastAlertedLevel='';lastTickAt=0;livePrice=null;if($('market').value==='paxg')connectBinanceStream();else{try{if(binanceWs)binanceWs.close()}catch(e){}binanceWs=null;}load();fetchLivePrice();updateConnectionStatus()});
-$('fullscreenBtn').addEventListener('click',toggleFullscreen);$('fullscreenBtnBottom').addEventListener('click',toggleFullscreen);document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){$('chartPanel').classList.remove('chart-fullscreen');$('fullscreenBtn').textContent='⛶ Full screen';$('fullscreenBtnBottom').textContent='⛶ Full screen'}setTimeout(paintChart,150)});$('zoomIn').addEventListener('click',()=>{visibleCount=Math.max(12,visibleCount-10);paintChart()});$('zoomOut').addEventListener('click',()=>{visibleCount=Math.min(180,visibleCount+10);paintChart()});$('chartReset').addEventListener('click',()=>{visibleCount=65;panOffset=0;crosshair=null;paintChart()});
-const chartCanvas=$('chart');chartCanvas.addEventListener('pointerdown',e=>{dragStart={x:e.clientX,pan:panOffset};chartCanvas.setPointerCapture(e.pointerId)});chartCanvas.addEventListener('pointermove',e=>{const r=chartCanvas.getBoundingClientRect();crosshair={x:e.clientX-r.left,y:e.clientY-r.top};if(dragStart&&Math.abs(e.clientX-dragStart.x)>3){const step=Math.round((e.clientX-dragStart.x)/(r.width/visibleCount));panOffset=Math.max(0,Math.min(candles.length-visibleCount,dragStart.pan+step));}paintChart()});chartCanvas.addEventListener('pointerup',()=>{dragStart=null});chartCanvas.addEventListener('pointercancel',()=>{dragStart=null});chartCanvas.addEventListener('wheel',e=>{e.preventDefault();visibleCount=Math.max(12,Math.min(180,visibleCount+(e.deltaY>0?8:-8)));paintChart()},{passive:false});chartCanvas.addEventListener('pointerleave',()=>{if(!dragStart){crosshair=null;paintChart()}});
+$('fullscreenBtn').addEventListener('click',toggleFullscreen);$('fullscreenBtnBottom').addEventListener('click',toggleFullscreen);document.addEventListener('fullscreenchange',()=>{if(!document.fullscreenElement){$('chartPanel').classList.remove('chart-fullscreen');$('fullscreenBtn').textContent='⛶ Full screen';$('fullscreenBtnBottom').textContent='⛶ Full screen'}setTimeout(paintChart,150)});$('zoomIn').addEventListener('click',()=>{if(proChart)proChart.timeScale().zoomIn()});$('zoomOut').addEventListener('click',()=>{if(proChart)proChart.timeScale().zoomOut()});$('chartReset').addEventListener('click',()=>{if(proChart)proChart.timeScale().fitContent()});
 $('notify').addEventListener('click',async()=>{if(!('Notification'in window)){ $('alertStatus').textContent='Browser notifications not supported here.';return}let p=await Notification.requestPermission();notifyOn=p==='granted';$('alertStatus').textContent=notifyOn?'Notifications enabled while page is open.':'Permission not granted.'});
-window.addEventListener('resize',paintChart);load();fetchLivePrice();if($('market').value==='paxg')connectBinanceStream();updateCandleTimer();setInterval(updateCandleTimer,250);refreshTimer=setInterval(load,30000);tickTimer=setInterval(fetchLivePrice,2000);setInterval(updateConnectionStatus,3000);
+window.addEventListener('resize',()=>{if(proChart)proChart.applyOptions({width:$('chart').clientWidth,height:$('chart').clientHeight});});initProChart();load();fetchLivePrice();if($('market').value==='paxg')connectBinanceStream();updateCandleTimer();setInterval(updateCandleTimer,250);refreshTimer=setInterval(load,30000);tickTimer=setInterval(fetchLivePrice,2000);setInterval(updateConnectionStatus,3000);
 if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
 </script></body></html>
