@@ -1,1 +1,9 @@
-{"name":"Gold Scalper AI V5.1 Signal Hold","short_name":"Gold Scalper","start_url":"./","display":"standalone","background_color":"#080d17","theme_color":"#0b1220","description":"Gold indicator with persistent 10-minute signals, live chart, signals, support/resistance, alerts, Delta XAUTUSD and Binance PAXG/USDT feeds"}
+{
+  "name": "Gold Scalper AI V6.0 Pro Chart",
+  "short_name": "Gold Scalper AI",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080d17",
+  "theme_color": "#0b1220",
+  "description": "Gold chart and rule-based indicators"
+}
