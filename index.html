@@ -10,7 +10,7 @@
 header{position:sticky;top:0;z-index:5;background:#0b1220ee;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);padding:13px 15px}.brand{display:flex;align-items:center;gap:10px}.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(135deg,#f7d66c,#b9811d);display:grid;place-items:center;color:#101522;font-weight:900;font-size:20px}h1{font-size:18px;margin:0}.sub{font-size:11px;color:var(--muted);margin-top:2px}
 main{max-width:980px;margin:auto;padding:14px;display:grid;gap:14px}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.card{background:linear-gradient(145deg,var(--panel),#0d1524);border:1px solid var(--line);border-radius:17px;padding:14px;min-width:0}.label{font-size:12px;color:var(--muted)}.value{font-size:22px;font-weight:750;letter-spacing:-.4px;margin:5px 0}.tiny{font-size:11px;color:var(--muted);line-height:1.55}.gold{color:var(--gold)}.green{color:var(--green)}.red{color:var(--red)}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.section-title h2{font-size:15px;margin:0}.badge{font-size:10px;border:1px solid #53647e;border-radius:20px;padding:4px 8px;color:#c8d5eb;white-space:nowrap}
 .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.tabs button,button{border:1px solid var(--line);background:#18243a;color:var(--text);border-radius:10px;padding:9px 11px;font-weight:650;font-size:12px}.tabs button.active{background:var(--gold);color:#171b24;border-color:var(--gold)}button.primary{background:var(--gold);color:#151922;border-color:var(--gold)}
-.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative;touch-action:pan-y}.chartpanel.chart-fullscreen{position:fixed!important;inset:0!important;z-index:99999!important;margin:0!important;padding:10px!important;border-radius:0!important;overflow:auto!important;background:#080d17!important;display:flex!important;flex-direction:column!important}.chartpanel.chart-fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px;flex:1}.chartpanel.chart-fullscreen .chart-help{display:none}.chartpanel.chart-fullscreen .section-title{padding-top:env(safe-area-inset-top)}.chartpanel:fullscreen{width:100%;height:100%;background:#080d17;overflow:auto;padding:10px;border:0;border-radius:0}.chartpanel:fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px}.liveprice-flash{animation:priceFlash .35s ease-out}@keyframes priceFlash{from{opacity:.45}to{opacity:1}}.chartbox canvas{width:100%;height:100%;display:block}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}
+.chartbox{height:390px;border-radius:12px;overflow:hidden;background:#09111f;position:relative;touch-action:pan-y}.chartpanel.chart-fullscreen{position:fixed!important;inset:0!important;z-index:99999!important;margin:0!important;padding:10px!important;border-radius:0!important;overflow:auto!important;background:#080d17!important;display:flex!important;flex-direction:column!important}.chartpanel.chart-fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px;flex:1}.chartpanel.chart-fullscreen .chart-help{display:none}.chartpanel.chart-fullscreen .section-title{padding-top:env(safe-area-inset-top)}.chartpanel:fullscreen{width:100%;height:100%;background:#080d17;overflow:auto;padding:10px;border:0;border-radius:0}.chartpanel:fullscreen .chartbox{height:calc(100dvh - 210px);min-height:300px}.liveprice-flash{animation:priceFlash .35s ease-out}@keyframes priceFlash{from{opacity:.45}to{opacity:1}}.chartbox canvas{width:100%;height:100%;display:block}.signal{border-radius:13px;padding:13px;background:#122a27;border:1px solid #1e6550}.signal.neutral{background:#282318;border-color:#695525}.signal.bear{background:#301922;border-color:#743747}.signal h3{margin:0 0 5px;font-size:20px}.signal p{margin:4px 0;font-size:12px;color:#d5e0ee;line-height:1.5}.signal-status{margin-top:9px;padding:8px 10px;border-radius:8px;background:#202b3d;font-size:12px;font-weight:700}.signal-status.bad{background:#3a1d27;color:#ff9aa8}.signal-status.good{background:#12372e;color:#7be0b9}.signal-status.warn{background:#3a3018;color:#f5d36d}
 .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{background:#0b1423;border:1px solid var(--line);padding:10px;border-radius:11px;min-width:0}.stat b{display:block;font-size:14px;margin-top:4px;overflow-wrap:anywhere}
 select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--line);color:var(--text);font-size:13px}.warning{font-size:11px;line-height:1.6;color:#c0cce0;background:#141d2d;border-radius:11px;padding:12px;border:1px solid var(--line)}footer{text-align:center;color:var(--muted);font-size:11px;padding:8px 18px 28px}
 @media(min-width:720px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.row{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.value{font-size:18px}.chartbox{height:340px}.card{padding:12px}}
@@ -32,7 +32,7 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 </section>
 <section class="card">
  <div class="section-title"><h2>Signal Dashboard</h2><span class="badge" id="signalTf">1m rules</span></div>
- <div class="signal neutral" id="signal"><h3>🟡 WAIT</h3><p>Waiting for candle data.</p></div>
+ <div class="signal neutral" id="signal"><h3>🟡 WAIT</h3><p>Waiting for candle data.</p><div class="signal-status" id="signalStatus">Signal status: waiting for setup</div></div>
  <div class="grid2" style="margin-top:10px">
   <div class="stat"><span class="label">FAST setup</span><b id="fastSignal">Waiting</b></div>
   <div class="stat"><span class="label">Confirmed setup</span><b id="confirmedSignal">Waiting</b></div>
@@ -62,6 +62,7 @@ select{padding:9px;border-radius:10px;background:#09111f;border:1px solid var(--
 <script>
 const $=id=>document.getElementById(id);
 let tf='1m', candles=[], candles5=[], previousSignal='', notifyOn=false, lastCloseTime=0, refreshTimer=null, tickTimer=null, livePrice=null, visibleCount=65, panOffset=0, dragStart=null, crosshair=null, activeMarket='', lastTickAt=0, binanceWs=null, wsRetryTimer=null, wsRetryDelay=1500, lastAlertedLevel='';
+let activeSignal=null, signalHistory=[]; const SIGNAL_HOLD_MS=10*60*1000;
 const base='https://data-api.binance.vision/api/v3';
 const deltaBase='https://api.india.delta.exchange';
 function intervalForDelta(i){return ({'1m':'1m','3m':'3m','5m':'5m','15m':'15m','30m':'30m','1h':'1h','4h':'4h','1d':'1d'})[i]||'1m'}
@@ -190,8 +191,28 @@ function render(){
  $('trend').textContent=a.trend||'—';$('rsi').textContent=a.rv==null?'—':a.rv.toFixed(1);$('signalTf').textContent=tf+' rules';
  $('fastSignal').textContent=a.sig;$('confirmedSignal').textContent=(candles5.length>25&&a.sig!=='WAIT'&&((ema(candles5.slice(0,-1).map(x=>x.c),9)>ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='BUY')||(ema(candles5.slice(0,-1).map(x=>x.c),9)<ema(candles5.slice(0,-1).map(x=>x.c),20)&&a.sig==='SELL')))?a.sig+' · aligned':'WAIT · confirmation missing';
  let sig=$('mode').value==='fast'?a.sig:$('confirmedSignal').textContent.startsWith('BUY')?'BUY':$('confirmedSignal').textContent.startsWith('SELL')?'SELL':'WAIT';
- $('signal').className='signal '+(sig==='BUY'?'':sig==='SELL'?'bear':'neutral');
- $('signal').innerHTML=`<h3>${sig==='BUY'?'🟢 BUY setup':sig==='SELL'?'🔴 SELL setup':'🟡 WAIT / NO TRADE'}</h3><p>${sig==='WAIT'?'Conditions are not aligned. Do not force a trade.':a.why+'. Confirm price and spread on your own broker before considering any trade.'}</p>`;
+ const now=Date.now(), px=livePrice??candles[candles.length-1].c;
+ // Keep BUY/SELL visible for up to 10 minutes. An opposite signal replaces it immediately.
+ if(sig==='BUY'||sig==='SELL'){
+   if(!activeSignal || activeSignal.sig!==sig){
+     if(activeSignal)signalHistory.unshift({...activeSignal,closedAt:now,closedReason:'Replaced by '+sig});
+     const triggerCandle=a.last||last||candles[candles.length-2];
+     activeSignal={sig,at:now,price:px,barRange:Math.max((triggerCandle?.h||px)-(triggerCandle?.l||px),Math.abs(px)*0.00015),why:a.why,market:$('market').value,tf};
+     signalHistory=signalHistory.slice(0,20);
+   }
+ }
+ if(activeSignal && now-activeSignal.at>=SIGNAL_HOLD_MS){signalHistory.unshift({...activeSignal,closedAt:now,closedReason:'10-minute display expired'});signalHistory=signalHistory.slice(0,20);activeSignal=null;}
+ let displaySig=activeSignal?activeSignal.sig:'WAIT', statusText='Signal status: waiting for setup', statusClass='';
+ if(activeSignal){
+   const age=Math.max(0,now-activeSignal.at), mins=Math.floor(age/60000), secs=Math.floor((age%60000)/1000), remaining=Math.max(0,SIGNAL_HOLD_MS-age), rm=Math.floor(remaining/60000), rs=Math.floor((remaining%60000)/1000);
+   const extended=activeSignal.sig==='BUY'?px>=activeSignal.price+activeSignal.barRange:px<=activeSignal.price-activeSignal.barRange;
+   const invalidated=activeSignal.sig==='BUY'?px<activeSignal.price-activeSignal.barRange*0.6:px>activeSignal.price+activeSignal.barRange*0.6;
+   if(extended){statusText='❌ MOVE ALREADY EXTENDED — DON’T CHASE · Signal age '+mins+':'+String(secs).padStart(2,'0');statusClass='bad';}
+   else if(invalidated){statusText='❌ SETUP INVALIDATED — avoid this old signal';statusClass='bad';}
+   else {statusText='✅ Signal active · '+mins+':'+String(secs).padStart(2,'0')+' elapsed · '+rm+':'+String(rs).padStart(2,'0')+' left';statusClass='good';}
+ }
+ $('signal').className='signal '+(displaySig==='BUY'?'':displaySig==='SELL'?'bear':'neutral');
+ $('signal').innerHTML=`<h3>${displaySig==='BUY'?'🟢 BUY setup':displaySig==='SELL'?'🔴 SELL setup':'🟡 WAIT / NO TRADE'}</h3><p>${activeSignal?activeSignal.why+'. Verify current price and spread on your broker before considering any trade.':'No active BUY/SELL signal. Conditions are not aligned; do not force a trade.'}</p><div class="signal-status ${statusClass}" id="signalStatus">${statusText}</div><p class="tiny">Signals stay visible for up to 10 minutes. Opposite signals replace them immediately. ❌ means the move may already be extended or the setup invalidated; it is a rule-based warning, not a guaranteed market judgment.</p>`;
  $('res').textContent=fmt(lv.res);$('sup').textContent=fmt(lv.sup);$('breakout').textContent=lv.breakout;$('candleState').textContent=last?(last.c>=last.o?'Bullish close':'Bearish close'):'—';
  if(last&&last.closeTime>lastCloseTime){
   lastCloseTime=last.closeTime;
